@@ -1,0 +1,2 @@
+#! /bin/bash
+ps ax -eo pid,comm,start,etime |  sed -re 's, +,;,g'

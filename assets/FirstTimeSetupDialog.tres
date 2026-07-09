@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Dialectic" load_steps=5 format=3 uid="uid://nmkhgu1feuj0"]
+
+[ext_resource type="Script" uid="uid://dfoq3xhv6gfhu" path="res://src/Humanities/WordFlow.gd" id="1_eih4t"]
+[ext_resource type="Script" uid="uid://beo76qu6hvftk" path="res://src/Humanities/Dialectic.gd" id="2_b2amo"]
+
+[sub_resource type="Resource" id="Resource_eih4t"]
+script = ExtResource("2_b2amo")
+title = "Who are you?"
+sentence = "I am but a guide.<br/>I only wish to help you though your journey.<p=1.0> May I ask of your name?<p=1.0> <m=OpenInput> "
+tone = 0
+context = ""
+choices = Array[ExtResource("1_eih4t")]([])
+metadata/_custom_type_script = "uid://beo76qu6hvftk"
+
+[sub_resource type="Resource" id="Resource_b2amo"]
+script = ExtResource("1_eih4t")
+parent = "FirstTimeSetup - Start"
+dialog = SubResource("Resource_eih4t")
+goto = ""
+metadata/_custom_type_script = "uid://dfoq3xhv6gfhu"
+
+[resource]
+script = ExtResource("2_b2amo")
+title = "FirstTimeSetup - Start"
+sentence = "Be not afraid..."
+tone = 0
+context = ""
+choices = Array[ExtResource("1_eih4t")]([SubResource("Resource_b2amo")])
+metadata/_custom_type_script = "uid://beo76qu6hvftk"

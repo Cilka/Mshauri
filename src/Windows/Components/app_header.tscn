@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://vaepyjig62aj"]
+
+[node name="AppRow" type="HBoxContainer"]
+alignment = 1
+
+[node name="CommandName" type="Label" parent="."]
+layout_mode = 2
+text = "Fully Qualified Name"
+
+[node name="Alias" type="Label" parent="."]
+layout_mode = 2
+text = "Alias"
+
+[node name="Pid" type="Label" parent="."]
+layout_mode = 2
+text = "Pid"
+
+[node name="LastOpened" type="Label" parent="."]
+layout_mode = 2
+text = "Last Opened"
+
+[node name="DailyDuration" type="Label" parent="."]
+layout_mode = 2
+text = "Last Duration"

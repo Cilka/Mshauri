@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://cl68m127toq43"]
+
+[ext_resource type="Texture2D" uid="uid://clvr0i0usljyj" path="res://assets/ui/Journal-mid.png" id="1_i363f"]
+[ext_resource type="PackedScene" uid="uid://jea6jqaredkj" path="res://src/Windows/Components/ChoiceSelection.tscn" id="2_liu3p"]
+
+[node name="DialogOption" type="CanvasLayer"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(300, 160)
+offset_right = 300.0
+offset_bottom = 160.0
+texture = ExtResource("1_i363f")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 26
+patch_margin_top = 28
+patch_margin_right = 26
+patch_margin_bottom = 29
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 58.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="ChoiceSelection" parent="NinePatchRect/MarginContainer" instance=ExtResource("2_liu3p")]
+layout_mode = 2

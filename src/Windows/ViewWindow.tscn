@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bo5d2mf45hre2"]
+
+[ext_resource type="Script" uid="uid://d3euhu1266512" path="res://src/Windows/view_window.gd" id="1_runh8"]
+
+[node name="ViewWindow" type="Window"]
+script = ExtResource("1_runh8")
+
+[node name="Camera2D" type="Camera2D" parent="."]

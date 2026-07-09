@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfslafct0wibu"]
+
+[ext_resource type="Texture2D" uid="uid://clvr0i0usljyj" path="res://assets/ui/Journal-mid.png" id="1_4afqj"]
+[ext_resource type="Script" uid="uid://cn0ute82gsog" path="res://src/Windows/journal.gd" id="1_52i0h"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_52i0h")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(600, 480)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4afqj")
+region_rect = Rect2(0, 0, 64, 64)
+patch_margin_left = 20
+patch_margin_top = 29
+patch_margin_right = 20
+patch_margin_bottom = 22
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 48
+
+[node name="LeftPage" type="TextEdit" parent="NinePatchRect/MarginContainer"]
+custom_minimum_size = Vector2(285, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+wrap_mode = 1
+indent_wrapped_lines = true
+
+[node name="RightPage" type="TextEdit" parent="NinePatchRect/MarginContainer"]
+custom_minimum_size = Vector2(285, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="CloseJournal" type="Button" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -113.0
+offset_top = -40.0
+offset_right = -14.0
+offset_bottom = -9.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Finish entry"
+
+[connection signal="pressed" from="NinePatchRect/CloseJournal" to="." method="_on_close_journal_pressed"]

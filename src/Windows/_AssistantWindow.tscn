@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://d06g8lfhv0pdm"]
+
+[ext_resource type="Script" uid="uid://n11sb1j7vbks" path="res://src/assistant_window.gd" id="1_lojyq"]
+[ext_resource type="PackedScene" uid="uid://d2hk6qatv35av" path="res://src/Friend.tscn" id="2_nwmdr"]
+[ext_resource type="Script" uid="uid://nyhp2u3fd7cl" path="res://src/command_readtest.gd" id="3_yxe3b"]
+
+[node name="AssistantWindow" type="Node2D"]
+script = ExtResource("1_lojyq")
+
+[node name="Friend" parent="." instance=ExtResource("2_nwmdr")]
+
+[node name="CommandReadtest" type="CanvasLayer" parent="."]
+script = ExtResource("3_yxe3b")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CommandReadtest"]
+offset_right = 566.0
+offset_bottom = 294.0
+
+[node name="Button" type="Button" parent="CommandReadtest"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -34.5
+offset_top = -31.0
+offset_right = 34.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Testing "
+
+[node name="NewWindow" type="Button" parent="CommandReadtest"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 110.0
+grow_vertical = 0
+text = "New Window"
+
+[connection signal="pressed" from="CommandReadtest/Button" to="CommandReadtest" method="_on_button_pressed"]
+[connection signal="pressed" from="CommandReadtest/NewWindow" to="CommandReadtest" method="_on_new_window_pressed"]

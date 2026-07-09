@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceeanfxqniwkf"]
+
+[ext_resource type="PackedScene" uid="uid://vaepyjig62aj" path="res://src/Windows/Components/app_header.tscn" id="1_l7e7h"]
+[ext_resource type="Script" uid="uid://bbrmjkdlsca8b" path="res://src/Windows/application_log.gd" id="1_soggw"]
+
+[node name="ApplicationLog" type="CanvasLayer"]
+script = ExtResource("1_soggw")
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(600, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="header" type="MarginContainer" parent="Panel"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 40
+
+[node name="Title" type="Label" parent="Panel/header"]
+layout_mode = 2
+text = "Application log"
+horizontal_alignment = 1
+
+[node name="Exit" type="TextureButton" parent="Panel/header"]
+layout_mode = 2
+stretch_mode = 0
+
+[node name="logcontainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/logcontainer"]
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="AppHeader" parent="Panel/logcontainer/VBoxContainer" instance=ExtResource("1_l7e7h")]
+layout_mode = 2

@@ -1,0 +1,117 @@
+[gd_scene load_steps=11 format=3 uid="uid://d2hk6qatv35av"]
+
+[ext_resource type="Script" uid="uid://dw563sedf0den" path="res://src/friend.gd" id="1_paqds"]
+[ext_resource type="Resource" uid="uid://bjw7t2ol3k4os" path="res://assets/mentors/Rin.tres" id="2_7al2t"]
+[ext_resource type="Texture2D" uid="uid://bwtf2wurhav1" path="res://assets/mentors/Rin.png" id="2_paqds"]
+[ext_resource type="Script" uid="uid://dd144lmorwp2r" path="res://src/mouse_detector.gd" id="3_8gtfr"]
+
+[sub_resource type="Animation" id="Animation_paqds"]
+resource_name = "Idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_7al2t"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_8gtfr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2u1j7"]
+resource_name = "Talk"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e23kd"]
+_data = {
+&"Idle": SubResource("Animation_paqds"),
+&"Move": SubResource("Animation_7al2t"),
+&"RESET": SubResource("Animation_8gtfr"),
+&"Talk": SubResource("Animation_2u1j7")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_paqds"]
+size = Vector2(64, 56)
+
+[node name="Friend" type="CharacterBody2D"]
+visibility_layer = 2
+motion_mode = 1
+script = ExtResource("1_paqds")
+companion_data = ExtResource("2_7al2t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visibility_layer = 2
+texture = ExtResource("2_paqds")
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_e23kd")
+}
+
+[node name="MouseDetector" type="Area2D" parent="."]
+script = ExtResource("3_8gtfr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
+shape = SubResource("RectangleShape2D_paqds")
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="TalkTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
+[connection signal="mouse_entered" from="MouseDetector" to="MouseDetector" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]
+[connection signal="mouse_exited" from="MouseDetector" to="MouseDetector" method="_on_mouse_exited"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="TalkTimer" to="." method="_on_talk_timer_timeout"]
