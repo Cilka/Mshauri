@@ -9,7 +9,7 @@ extends Node
 @onready var _main_camera: Camera2D = $Camera2D
 var mentor_window
 var mentor : Mentor
-var has_profile : bool = false
+var has_profile : bool = true
 signal profile_in_progress
 func _ready():
 	get_tree().get_root().set_transparent_background(true)
@@ -18,10 +18,10 @@ func _ready():
 	
 	# Can also break on some systems
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
-	#mentor_window = Weaver.SummonMentor()
+	mentor_window = Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
-	#if OS.get_name() == "Linux":
-		#Weaver.OpenQuickMenu()
+	if OS.get_name() == "Linux":
+		Weaver.OpenQuickMenu()
 	# Set the window settings - most of them can be set in the project settings
 	_mainWindow.borderless = true		# Hide the edges of the window
 	_mainWindow.unresizable = true		# Prevent resizing the window
