@@ -8,6 +8,7 @@ extends Node
 
 var _window_count : int =0
 var _windows : Dictionary[String,Window]
+var dialog_box_window : Popup
 signal focused_window_open
 signal focused_window_closed
 func _ready() -> void:
@@ -23,20 +24,21 @@ func _ready() -> void:
 		_quick_menu = load("res://src/Windows/QuickMenu.tscn")
 	if !_choice_box:
 		_choice_box = load("res://src/Windows/DialogOption.tscn")
-		
+	dialog_box_window = get_node("/root/Main/DialogBox")
 func OpenDialog(window_pos : Vector2i, convo :Dialectic) -> Window:	
 	var talk = _dialog_box.instantiate()
 	var new_window = _weave(window_pos,talk)
 	talk.set_conversation(convo)
-	talk.autoclose = false
-	
+	talk.autoclose = false	
 	return _windows[new_window.title]
+	
 func OpenSimpleDialog(window_pos : Vector2i, text :String, autoclose :bool = false) -> Window:	
 	var talk = _dialog_box.instantiate()
-	var new_window = _weave(window_pos,talk)
+	dialog_box_window.add_child(talk)
 	talk.add_text(text, System.TextSpeed)
 	talk.autoclose = autoclose
-	return _windows[new_window.title]
+	return dialog_box_window
+	
 func OpenChoiceDialog(window_pos: Vector2i, question: String, title: String,\
  options : Dictionary[String, Callable]):
 	var choice_box =  _choice_box.instantiate()
@@ -100,8 +102,15 @@ func _weave(window_pos : Vector2i,child: Node,window_title :String = "" ,is_ui :
 	new_window.title = window_title
 	_windows[new_window.title] = new_window
 	return new_window
+
+	
+	
 	
 func seal(window : String):
 	if _windows.has(window):			
 		_windows[window].close_requested.emit()
 		_windows.erase(window)
+func ShowDialogWindow():
+	dialog_box_window.show()
+func HideDialogWindow():
+	dialog_box_window.hide()

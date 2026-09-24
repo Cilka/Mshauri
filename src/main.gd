@@ -7,9 +7,12 @@ extends Node
 @export_range(0, 19) var player_visibility_layer: int = 1
 @export_range(0, 19) var world_visibility_layer: int = 0
 @onready var _main_camera: Camera2D = $Camera2D
+@onready var dialog_window = $DialogBox
+@export var dialog_window_position :Vector2i = Vector2i(800,800)
 var mentor_window
 var mentor : Mentor
 var has_profile : bool = true
+var dialog_window_set : bool = false
 signal profile_in_progress
 func _ready():
 	get_tree().get_root().set_transparent_background(true)
@@ -20,8 +23,8 @@ func _ready():
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
 	mentor_window = Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
-	if OS.get_name() == "Linux":
-		Weaver.OpenQuickMenu()
+	#if OS.get_name() == "Linux":
+		#Weaver.OpenQuickMenu()
 	# Set the window settings - most of them can be set in the project settings
 	_mainWindow.borderless = true		# Hide the edges of the window
 	_mainWindow.unresizable = true		# Prevent resizing the window
@@ -36,15 +39,12 @@ func _ready():
 	_mainWindow.set_canvas_cull_mask_bit(player_visibility_layer, false)
 	_mainWindow.set_canvas_cull_mask_bit(world_visibility_layer, true)
 	
-	#mentor_window.set_canvas_cull_mask_bit(player_visibility_layer, true)
-	#mentor_window.set_canvas_cull_mask_bit(world_visibility_layer, false)	
-	#
-	#mentor_window.get_viewport().world_2d = get_viewport().world_2d
-	#mentor = _get_mentor()
 	profile_in_progress.connect(_setup_profile)
 	if !has_profile:
 		profile_in_progress.emit()
-
+	if !dialog_window_set:
+		var screen = DisplayServer.screen_get_usable_rect(get_window().current_screen).size
+		dialog_window.position = Vector2i(screen.x/2 - dialog_window.size.x/2, screen.y-dialog_window.size.y)
 func _process(delta: float) -> void:
 	cam.position = get_window().position
 	_mainWindow.position= get_window_pos_from_camera()

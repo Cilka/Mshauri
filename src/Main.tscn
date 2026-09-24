@@ -7,4 +7,9 @@ script = ExtResource("1_4gxt3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="DialogBox" type="Popup" parent="."]
+transparent_bg = true
+size = Vector2i(300, 200)
+mouse_passthrough_polygon = PackedVector2Array(0, 0)
+always_on_top = true
+transparent = true

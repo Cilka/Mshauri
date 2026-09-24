@@ -12,6 +12,7 @@ var choice_select = load("res://src/Windows/Components/ChoiceSelection.tscn") as
 @onready var pause_timer : Timer = get_node("PauseTimer")
 @onready var autoclose_timer : Timer = get_node("AutoCloseTimer")
 @onready var processor = get_node("WordProcessor") as WordProcessor
+@onready var border = $NinePatchRect
 signal talking
 
 func _ready():
@@ -73,17 +74,25 @@ func _on_type_timer_timeout() -> void:
 			autoclose_timer.timeout.connect(_on_autoclose_timer_timeout)
 	else:
 		type_timer.stop()
-	if !is_talking() \
-	&& get_node("NinePatchRect/MarginContainer/Panel/VBoxContainer/ChoiceSelection"):
-		get_node("NinePatchRect/MarginContainer/Panel/VBoxContainer/ChoiceSelection")\
-		.visible = true
+	#if !is_talking() \
+	#&& get_node("NinePatchRect/MarginContainer/Panel/VBoxContainer/ChoiceSelection"):
+		#get_node("NinePatchRect/MarginContainer/Panel/VBoxContainer/ChoiceSelection")\
+		#.visible = true
 func _on_talk_ready():
+	Weaver.ShowDialogWindow()
 	say()
 func is_talking() -> bool:
 	return message_box.visible_characters < message_box.text.length()
-
+func _close_out():
+	var tween = create_tween()
+	tween.finished.connect(_on_tween_finished)
+	tween.tween_property(border, "position",Vector2(0,200),1).set_ease(Tween.EASE_IN_OUT)
+func _on_tween_finished():
+	queue_free()
+	Weaver.HideDialogWindow()
 func _on_autoclose_timer_timeout():
-	get_parent().close_requested.emit()
+	_close_out()
+	#get_parent().close_requested.emit()
 func _on_PauseCalculator_pause_requested(duration: float) -> void:
 #	_playing_voice = false
 	type_timer.stop()
