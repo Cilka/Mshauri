@@ -14,6 +14,7 @@ var mentor : Mentor
 var has_profile : bool = true
 var dialog_window_set : bool = false
 signal profile_in_progress
+
 func _ready():
 	get_tree().get_root().set_transparent_background(true)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, true)
@@ -23,8 +24,8 @@ func _ready():
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
 	mentor_window = Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
-	#if OS.get_name() == "Linux":
-		#Weaver.OpenQuickMenu()
+	if OS.get_name() == "Linux":
+		Weaver.OpenQuickMenu()
 	# Set the window settings - most of them can be set in the project settings
 	_mainWindow.borderless = true		# Hide the edges of the window
 	_mainWindow.unresizable = true		# Prevent resizing the window

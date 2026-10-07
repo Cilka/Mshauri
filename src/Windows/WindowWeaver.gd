@@ -8,7 +8,7 @@ extends Node
 
 var _window_count : int =0
 var _windows : Dictionary[String,Window]
-var dialog_box_window : Popup
+var dialog_box_window 
 signal focused_window_open
 signal focused_window_closed
 func _ready() -> void:
@@ -71,6 +71,11 @@ func OpenQuickMenu(window_pos: Vector2i =Center()):
 	var q_menu = _quick_menu.instantiate()
 	_weave(window_pos,q_menu, "Quick Menu")
 	_windows["Quick Menu"].resize_to_control()
+	_windows["Quick Menu"].borderless = true
+	_windows["Quick Menu"].transparent = true
+	_windows["Quick Menu"].transient = true
+	_windows["Quick Menu"].popup_window = true
+	_windows["Quick Menu"].exclusive = true
 	return _windows["Quick Menu"]
 func OpenJournal(window_pos: Vector2i = Center()):
 	var journal = (load("res://src/Windows/Journal.tscn") as PackedScene).instantiate()

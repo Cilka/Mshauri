@@ -12,6 +12,7 @@ title = ""
 sentence = "As much<p=0.5> as I fly around, I seem to <p=1.0> never get tired."
 tone = 0
 context = ""
+category = ""
 choices = Array[ExtResource("3_nt1q6")]([])
 metadata/_custom_type_script = "uid://beo76qu6hvftk"
 
@@ -21,6 +22,7 @@ title = ""
 sentence = "*H<p=1.5>u<p=1.5>ms<p=1.5> so<p=0.1>ftly*"
 tone = 0
 context = ""
+category = ""
 choices = Array[ExtResource("3_nt1q6")]([])
 metadata/_custom_type_script = "uid://beo76qu6hvftk"
 
@@ -30,6 +32,7 @@ title = "Feeling Guage - Okay"
 sentence = "I'm Okay"
 tone = 0
 context = ""
+category = ""
 choices = Array[ExtResource("3_nt1q6")]([])
 metadata/_custom_type_script = "uid://beo76qu6hvftk"
 
@@ -46,6 +49,7 @@ title = "Feeling Guage - Bad"
 sentence = "Not so good..."
 tone = 0
 context = ""
+category = ""
 choices = Array[ExtResource("3_nt1q6")]([])
 metadata/_custom_type_script = "uid://beo76qu6hvftk"
 
@@ -62,6 +66,7 @@ title = "Feeling Guage"
 sentence = "How<p=0.5> are <p=0.5> you<p=0.5> feeling?"
 tone = 0
 context = ""
+category = ""
 choices = Array[ExtResource("3_nt1q6")]([SubResource("Resource_tmx88"), SubResource("Resource_riq0u"), null])
 metadata/_custom_type_script = "uid://beo76qu6hvftk"
 

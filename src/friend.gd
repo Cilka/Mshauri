@@ -7,8 +7,6 @@ var is_held : bool = false
 var is_hovered : bool = false
 var is_talking : bool = false 
 var do_not_disturb: bool =false
-var _movement_queued: bool =false
-var _talk_queued: bool =false
 
 @export var companion_data : Companion
 @onready var anim = $AnimationPlayer
@@ -45,21 +43,22 @@ func open_chat(dialog: Dialectic, autoclose :bool  = true):
 	
 	
 func move_random():
-	var screen = DisplayServer.screen_get_usable_rect(DisplayServer.get_screen_from_rect(get_viewport_rect()))
-	#DisplayServer.screen_get_size()
-	is_moving = true  
-	#var sprite_to_screen_pos = Vector2(global_position.x + get_window().position.x, global_position.y +get_window().position.y)
-	var rnd_x = randi_range(sprite.get_rect().size.x,screen.size.x)
-	var rnd_y = randi_range(sprite.get_rect().size.y,screen.size.y)
-	if rnd_x < position.x:
-		sprite.flip_h = true
-	else:
-		sprite.flip_h = false
-	
-	current_tween = create_tween()
-	current_tween.finished.connect(_on_movement_finish)
-	current_tween.tween_property(self, "position", Vector2(rnd_x,rnd_y) , 8.0)
-		
+	if !is_moving && _should_move():
+		var screen = DisplayServer.screen_get_usable_rect(DisplayServer.get_screen_from_rect(get_viewport_rect()))
+		#DisplayServer.screen_get_size()
+		is_moving = true  
+		#var sprite_to_screen_pos = Vector2(global_position.x + get_window().position.x, global_position.y +get_window().position.y)
+		var rnd_x = randi_range(sprite.get_rect().size.x,screen.size.x - sprite.get_rect().size.x)
+		var rnd_y = randi_range(sprite.get_rect().size.y,screen.size.y- sprite.get_rect().size.y)
+		if rnd_x < position.x:
+			sprite.flip_h = true
+		else:
+			sprite.flip_h = false
+
+		current_tween = create_tween()
+		current_tween.finished.connect(_on_movement_finish)
+		current_tween.tween_property(self, "position", Vector2(rnd_x,rnd_y) , 8.0)
+			
 
 func get_current_window() -> int:
 	return get_window().get_window_id()
@@ -76,6 +75,7 @@ func say_random():
 		stop_moving()
 		_clear_state()		
 		is_talking = true
+		movement_timer.stop()
 		open_chat(companion_data.sayings.idle[rand])
 func move_viewport():
 	pass
@@ -87,10 +87,7 @@ func stop_moving():
 	is_moving = false
 	
 func _on_timer_timeout() -> void:
-	if !_should_move():
-		_movement_queued = true
-	else:
-		move_random()
+	move_random()
 	
 func _update_window(delta :float) -> void:
 	get_window().position = Vector2i(get_window().position.x +  global_position.x * delta, get_window().position.y +  global_position.y * delta)
@@ -118,10 +115,7 @@ func _should_move() -> bool:
 func _on_chat_close() -> void:
 	is_talking =  false
 	talk_timer.start()
-	if _movement_queued:
-		move_random()
-	else:
-		movement_timer.start()
+	movement_timer.start()
 
 
 func _on_talk_timer_timeout() -> void:

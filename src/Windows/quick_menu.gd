@@ -10,22 +10,28 @@ func _ready() -> void:
 	button.pressed.connect(_on_activation)
 	button.button_down.connect(_on_held)
 	button.button_up.connect(_on_release)
-	get_parent().borderless = true
-	get_parent().transparent = true
+
 	if Weaver._windows.has("Your Mentor"):
 		mentor_toggle.text = "Dismiss Mentor"
 	else:
 		mentor_toggle.text = "Beckon Mentor"
-		
+
 func _process(delta: float) -> void:
 	if drag:
-		get_window().position = DisplayServer.mouse_get_position()
+		#get_window().start_drag()
+		var drag_offset = get_window().size/2
+		var mouse_pos =  DisplayServer.mouse_get_position()
+		var window_pos = mouse_pos - Vector2i(drag_offset.x, drag_offset.y)
+		DisplayServer.window_set_position(window_pos, get_window().get_window_id())
+		#get_window().position = 
 func _on_activation():
 	options.visible = !options.visible
+	
 	if options.visible:
 		Weaver.adjust_view(get_parent().title, expanded_size)
 	else:
 		Weaver.adjust_view(get_parent().title, button.custom_minimum_size)
+	get_window().child_controls_changed()
 func _on_held():
 	drag = true
 func _on_release():

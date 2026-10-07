@@ -106,7 +106,7 @@ wait_time = 8.0
 autostart = true
 
 [node name="TalkTimer" type="Timer" parent="."]
-wait_time = 60.0
+wait_time = 20.0
 autostart = true
 
 [connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
