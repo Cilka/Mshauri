@@ -1,21 +1,28 @@
 extends CanvasLayer
 
-@onready var button : TextureButton = get_node("MenuActivator")
-@onready var options : MarginContainer = get_node("OptionsContainer")
-@onready var mentor_toggle : Button = get_node("OptionsContainer/Options/ToggleMentor")
-@export var collapsed_size : Vector2i = Vector2i(48,48)
+@onready var button : TextureButton = get_node("VBoxContainer/MenuActivator")
+@onready var options : MarginContainer = get_node("VBoxContainer/OptionsContainer")
+@onready var mentor_toggle : Button = get_node("VBoxContainer/OptionsContainer/Options/ToggleMentor")
+@onready var drag_area : Area2D = get_node("VBoxContainer/MenuActivator/Area2D")
 @export var expanded_size : Vector2 = Vector2i(128, 600)
+var can_drag : bool = false
 var drag : bool = false
 func _ready() -> void:
 	button.pressed.connect(_on_activation)
-	button.button_down.connect(_on_held)
-	button.button_up.connect(_on_release)
-
+	drag_area.mouse_entered.connect(_on_mouse_entered)
+	drag_area.mouse_exited.connect(_on_mouse_exited)
+	drag_area.get_node("CollisionShape2D").shape.size = button.size
 	if Weaver._windows.has("Your Mentor"):
 		mentor_toggle.text = "Dismiss Mentor"
 	else:
 		mentor_toggle.text = "Beckon Mentor"
-
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT && event.pressed && can_drag:
+			drag = true
+		elif event.button_index == MOUSE_BUTTON_LEFT && event.is_released():
+			drag = false
+			
 func _process(delta: float) -> void:
 	if drag:
 		#get_window().start_drag()
@@ -26,12 +33,6 @@ func _process(delta: float) -> void:
 		#get_window().position = 
 func _on_activation():
 	options.visible = !options.visible
-	
-	if options.visible:
-		Weaver.adjust_view(get_parent().title, expanded_size)
-	else:
-		Weaver.adjust_view(get_parent().title, button.custom_minimum_size)
-	get_window().child_controls_changed()
 func _on_held():
 	drag = true
 func _on_release():
@@ -61,3 +62,9 @@ func _on_journal_pressed() -> void:
 		return
 	Weaver.OpenJournal()
 	
+func _on_mouse_entered():
+	print_debug("Quick menu sees mouse")
+	can_drag = true
+func _on_mouse_exited():
+	can_drag = false
+	drag = false

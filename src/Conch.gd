@@ -15,8 +15,7 @@ func _ready() -> void:
 			base_path = base_path.path_join("powershell")
 		"macOS":
 			base_path = base_path.path_join("ksh")
-	print_debug(base_path)
-	_restore_commands()
+	#_restore_commands()
 	for c in cmd:
 		print_debug(c)
 
