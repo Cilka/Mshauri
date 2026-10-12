@@ -17,7 +17,7 @@ func _ready() -> void:
 	if !_dialog_box:
 		_dialog_box = load("res://src/Windows/Dialog.tscn")
 	if !_settings:
-		_settings = load("res://src/Windows/ControlBoard.tscn")
+		_settings = load("res://src/Windows/Settings.tscn")
 	if !_mentor:
 		_mentor = load("res://src/Friend.tscn")
 	if !_quick_menu:
@@ -97,13 +97,12 @@ func adjust_view(window: String, resize_to :Vector2):
 	_windows[window].size = Vector2i(resize_to.x, resize_to.y)
 	_windows[window].position = old_pos
 func _weave(window_pos : Vector2i,child: Node,window_title :String = "" ,is_ui : bool = true, popup: bool=false ) -> Node:
-	var new_window = _window.instantiate()
-		
+	var new_window = _window.instantiate()		
+	new_window.initial_position = Window.WINDOW_INITIAL_POSITION_ABSOLUTE
 	get_tree().root.get_node("/root/Main").add_child(new_window)
 	new_window.ui_view_only = is_ui
 	new_window.add_child(child)
 	new_window.resize_to_control()
-	new_window.initial_position = Window.WINDOW_INITIAL_POSITION_ABSOLUTE
 	new_window.position =  window_pos
 	_window_count += 1
 	if window_title == "":

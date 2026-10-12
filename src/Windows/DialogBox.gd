@@ -18,6 +18,8 @@ signal talking
 func _ready():
 	talking.connect(_on_talk_ready)
 	EventFlagger.dialog_request.connect(_on_dialog_request)
+	autoclose_timer.wait_time = System.WaitToCloseDialogInterval
+	System.WaitToCloseDialogIntervalChanged.connect(_on_wait_to_close_changed)
 func _process(delta:float) -> void:
 	if dialog && _section >= dialog.size():
 		_can_close_window = true
@@ -115,3 +117,5 @@ func _on_choice_selected(index :int, choices:Array[WordFlow]):
 	.queue_free()
 	_section =0
 	set_conversation(choices[index].dialog)
+func _on_wait_to_close_changed(val):
+	autoclose_timer.wait_time = val

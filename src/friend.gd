@@ -14,6 +14,7 @@ var do_not_disturb: bool =false
 @onready var movement_timer = $MoveTimer
 @onready var talk_timer = $TalkTimer
 @onready var colShape = $MouseDetector/CollisionShape2D
+@onready var quiet_timer = $QuietTimer
 var current_tween : Tween
 var chat_window : Window
 func _ready():
@@ -21,6 +22,13 @@ func _ready():
 	Weaver.focused_window_open.connect(_on_focused_window_open)
 	Weaver.focused_window_closed.connect(_on_focused_window_closed)
 	Weaver.dialog_box_window.popup_hide.connect(_on_chat_close)
+	talk_timer.wait_time = System.WaitToTalkInterval
+	if System.QuietTimeInterval > 0:
+		quiet_timer.wait_time =System.QuietTimeInterval
+	System.QuietTimeIntervalChanged.connect(_on_quite_time_changed)
+	System.WaitToTalkIntervalChanged.connect(_on_talk_time_changed)
+	
+	
 func _process(delta: float) -> void:
 	#
 	get_window().position = position
@@ -134,3 +142,12 @@ func _on_focused_window_closed():
 	do_not_disturb = false
 	talk_timer.start()
 	movement_timer.start()
+
+func _on_quite_time_changed(val):
+	if val  < 1:
+		do_not_disturb = true
+		return
+	quiet_timer.wait_time = val
+	
+func _on_talk_time_changed(val):
+	talk_timer.wait_time = val

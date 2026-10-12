@@ -3,15 +3,11 @@ extends CanvasLayer
 @onready var button : TextureButton = get_node("VBoxContainer/MenuActivator")
 @onready var options : MarginContainer = get_node("VBoxContainer/OptionsContainer")
 @onready var mentor_toggle : Button = get_node("VBoxContainer/OptionsContainer/Options/ToggleMentor")
-@onready var drag_area : Area2D = get_node("VBoxContainer/MenuActivator/Area2D")
 @export var expanded_size : Vector2 = Vector2i(128, 600)
 var can_drag : bool = false
 var drag : bool = false
 func _ready() -> void:
-	button.pressed.connect(_on_activation)
-	drag_area.mouse_entered.connect(_on_mouse_entered)
-	drag_area.mouse_exited.connect(_on_mouse_exited)
-	drag_area.get_node("CollisionShape2D").shape.size = button.size
+	button.pressed.connect(_handle_mouse_input)
 	if Weaver._windows.has("Your Mentor"):
 		mentor_toggle.text = "Dismiss Mentor"
 	else:
@@ -41,9 +37,8 @@ func _on_release():
 
 func _on_close_menu_pressed() -> void:
 	options.visible = false
-	Weaver.adjust_view(get_parent().title, button.custom_minimum_size)
-
-
+	drag = false
+	can_drag = false
 func _on_toggle_mentor_pressed() -> void:
 	if Weaver._windows.has("Your Mentor"):
 		Weaver.seal("Your Mentor")
@@ -62,9 +57,16 @@ func _on_journal_pressed() -> void:
 		return
 	Weaver.OpenJournal()
 	
-func _on_mouse_entered():
-	print_debug("Quick menu sees mouse")
-	can_drag = true
-func _on_mouse_exited():
-	can_drag = false
-	drag = false
+func _handle_mouse_input():
+	if options.visible:
+		can_drag = true
+	else:
+		_on_activation()
+		can_drag = false
+		drag = false
+
+
+func _on_settings_pressed() -> void:
+	if Weaver._windows.has("Settings"):
+		return
+	Weaver.OpenSettings()

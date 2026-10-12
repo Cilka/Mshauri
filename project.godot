@@ -21,7 +21,6 @@ config/icon="res://icon.svg"
 Conch="res://src/Conch.gd"
 Weaver="*res://src/Windows/WindowWeaver.gd"
 System="*res://src/System.gd"
-SystemTray="res://src/SystemTray.gd"
 EventFlagger="*res://src/EventFlagger.gd"
 
 [display]

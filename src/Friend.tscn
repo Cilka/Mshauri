@@ -109,6 +109,9 @@ autostart = true
 wait_time = 20.0
 autostart = true
 
+[node name="QuietTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]
 [connection signal="mouse_entered" from="MouseDetector" to="MouseDetector" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MouseDetector" to="." method="_on_mouse_detector_mouse_exited"]

@@ -1,0 +1,90 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfciue722rua7"]
+
+[ext_resource type="Script" uid="uid://dqlwacwuuc05c" path="res://src/Windows/SettingsWindow.gd" id="1_ebvph"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ebvph")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+custom_minimum_size = Vector2(640, 480)
+offset_right = 500.0
+offset_bottom = 208.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+current_tab = 0
+
+[node name="Mentor" type="PanelContainer" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Mentor"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Mentor/MarginContainer"]
+layout_mode = 2
+
+[node name="TalkIntervalContainer" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TalkIntervalLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer"]
+layout_mode = 2
+text = "Time To Talk Interval (in seconds)         "
+
+[node name="TalkInterval" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+min_value = 1.0
+max_value = 3600.0
+value = 300.0
+
+[node name="TalkIntervalValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer"]
+layout_mode = 2
+
+[node name="DialogCloseContainer" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="DialogCloseLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer"]
+layout_mode = 2
+text = "Dialog wait time to close (in seconds)  "
+
+[node name="DialogClose" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+max_value = 60.0
+value = 5.0
+ticks_on_borders = true
+
+[node name="DialogCloseValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer"]
+layout_mode = 2
+
+[node name="QuietTimeInterval" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="QuietTimeLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+layout_mode = 2
+text = "Quite Time Interval (in minutes)            "
+
+[node name="QuietTime" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+layout_mode = 2
+tooltip_text = "If you don't want your mentor to talk at all, set it to 0."
+max_value = 1440.0
+
+[node name="QuietTimeValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+layout_mode = 2
+
+[node name="Apply" type="Button" parent="TabContainer/Mentor/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Apply"
+
+[node name="Exit" type="Button" parent="TabContainer/Mentor/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+text = "Exit
+"
