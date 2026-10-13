@@ -42,6 +42,7 @@ enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg")
 [global_group]
 
 Mentor=""
+QuickMenuWindow="Static Quick menu for all systems"
 
 [input]
 

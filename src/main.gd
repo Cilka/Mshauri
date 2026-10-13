@@ -22,6 +22,11 @@ func _ready():
 	
 	# Can also break on some systems
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
+	var screen = DisplayServer.screen_get_usable_rect(get_window().current_screen).size
+	if OS.get_name() == "Linux":
+		#TODO:need to get menu position dynamicly. Too Tired to do this proper
+		var menu_size = Vector2i(128,600) 
+		Weaver.OpenQuickMenu(Vector2i(screen.x - menu_size.x, screen.y-600))
 	mentor_window = Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
 
@@ -38,17 +43,14 @@ func _ready():
 	_mainWindow.mouse_passthrough = true
 	_mainWindow.set_canvas_cull_mask_bit(player_visibility_layer, false)
 	_mainWindow.set_canvas_cull_mask_bit(world_visibility_layer, true)
-	var screen = DisplayServer.screen_get_usable_rect(get_window().current_screen).size
+	
 	profile_in_progress.connect(_setup_profile)
 	if !has_profile:
 		profile_in_progress.emit()
 	if !dialog_window_set:
 		dialog_window.position = Vector2i(screen.x/2 - dialog_window.size.x/2, screen.y-dialog_window.size.y)
 	dialog_window.exclusive = false
-	if OS.get_name() == "Linux":
-		#TODO:need to get menu position dynamicly. Too Tired to do this proper
-		var menu_size = Vector2i(128,600) 
-		Weaver.OpenQuickMenu(Vector2i(screen.x - menu_size.x, screen.y-600))
+	
 func _process(delta: float) -> void:
 	cam.position = get_window().position
 	_mainWindow.position= get_window_pos_from_camera()

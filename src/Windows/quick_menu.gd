@@ -3,9 +3,15 @@ extends CanvasLayer
 @onready var button : TextureButton = get_node("VBoxContainer/MenuActivator")
 @onready var options : MarginContainer = get_node("VBoxContainer/OptionsContainer")
 @onready var mentor_toggle : Button = get_node("VBoxContainer/OptionsContainer/Options/ToggleMentor")
+@onready var quiet_buton : Button = get_node("VBoxContainer/OptionsContainer/Options/Quiet")
+@onready var quiet_timer_label: Label = get_node("VBoxContainer/OptionsContainer/Options/PanelContainer/Quiet Timer")
 @export var expanded_size : Vector2 = Vector2i(128, 600)
 var can_drag : bool = false
 var drag : bool = false
+var is_in_quiet_time : bool = false
+var current_time: float = 0
+var quiet_button_text = "Ask for Quiet Time"
+signal quiet_time_set(is_on)
 func _ready() -> void:
 	button.pressed.connect(_handle_mouse_input)
 	if Weaver._windows.has("Your Mentor"):
@@ -18,7 +24,7 @@ func _input(event: InputEvent) -> void:
 			drag = true
 		elif event.button_index == MOUSE_BUTTON_LEFT && event.is_released():
 			drag = false
-			
+
 func _process(delta: float) -> void:
 	if drag:
 		#get_window().start_drag()
@@ -26,7 +32,15 @@ func _process(delta: float) -> void:
 		var mouse_pos =  DisplayServer.mouse_get_position()
 		var window_pos = mouse_pos - Vector2i(drag_offset.x, drag_offset.y)
 		DisplayServer.window_set_position(window_pos, get_window().get_window_id())
-		#get_window().position = 
+	if current_time <= 0 && !quiet_buton.text.contains(quiet_button_text):
+		quiet_buton.text = quiet_button_text
+		quiet_timer_label.get_parent().visible =  false
+	elif current_time > 0:
+		if !quiet_buton.text.contains("Focusing..."):
+			quiet_buton.text = "Focusing..."
+		current_time -= delta
+		_on_quite_time_update()
+		
 func _on_activation():
 	options.visible = !options.visible
 func _on_held():
@@ -56,7 +70,6 @@ func _on_journal_pressed() -> void:
 	if Weaver._windows.has("Journal"):
 		return
 	Weaver.OpenJournal()
-	
 func _handle_mouse_input():
 	if options.visible:
 		can_drag = true
@@ -64,9 +77,26 @@ func _handle_mouse_input():
 		_on_activation()
 		can_drag = false
 		drag = false
-
-
 func _on_settings_pressed() -> void:
 	if Weaver._windows.has("Settings"):
 		return
 	Weaver.OpenSettings()
+func _on_quiet_pressed() -> void:
+	is_in_quiet_time = !is_in_quiet_time
+	quiet_time_set.emit(is_in_quiet_time)
+	quiet_timer_label.get_parent().visible = is_in_quiet_time
+	if is_in_quiet_time:
+		current_time = System.QuietTimeInterval
+	else:
+		current_time = 0
+		quiet_buton.text = quiet_button_text
+func _on_quite_time_update():
+	quiet_timer_label.text = _convert_time() 
+
+func _convert_time() -> String:
+	var time : String = ""
+	if current_time/3600 >= 1:
+		time = str((current_time/3600) as int)+ ":" + str((fmod(current_time,3600)/60) as int) + ":" + str(fmod(fmod(current_time,3600),60) as int)
+	else:
+		time  = str((current_time/60) as int) + ":" + str(fmod(current_time,60))
+	return time

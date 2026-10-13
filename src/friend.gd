@@ -17,6 +17,10 @@ var do_not_disturb: bool =false
 @onready var quiet_timer = $QuietTimer
 var current_tween : Tween
 var chat_window : Window
+var is_user_in_menu: bool = false
+var quiet_timer_timed_out : bool = false
+
+signal QuiteTimerChanged(time)
 func _ready():
 	#print_debug(Conch.read_app_usage())
 	Weaver.focused_window_open.connect(_on_focused_window_open)
@@ -27,8 +31,8 @@ func _ready():
 		quiet_timer.wait_time =System.QuietTimeInterval
 	System.QuietTimeIntervalChanged.connect(_on_quite_time_changed)
 	System.WaitToTalkIntervalChanged.connect(_on_talk_time_changed)
-	
-	
+	get_tree().get_first_node_in_group("QuickMenuWindow")\
+	.quiet_time_set.connect(_on_quiet_time_set)
 func _process(delta: float) -> void:
 	#
 	get_window().position = position
@@ -119,7 +123,7 @@ func _on_mouse_detector_mouse_exited() -> void:
 	movement_timer.start()
 	print_debug("Mouse gone...")
 func _should_move() -> bool:
-	return !is_hovered && !is_held && !is_talking && !do_not_disturb
+	return !is_hovered && !is_held && !is_talking
 func _on_chat_close() -> void:
 	is_talking =  false
 	talk_timer.start()
@@ -135,13 +139,19 @@ func _on_movement_finish():
 	movement_timer.start()
 
 func _on_focused_window_open():
+	is_user_in_menu = true
 	do_not_disturb = true
 	talk_timer.stop()
 	movement_timer.stop()
+
 func _on_focused_window_closed():
+	is_user_in_menu = false
 	do_not_disturb = false
 	talk_timer.start()
 	movement_timer.start()
+	#TODO: Ask the user for more time 
+	if quiet_timer_timed_out:
+		quiet_timer_timed_out = false
 
 func _on_quite_time_changed(val):
 	if val  < 1:
@@ -151,3 +161,21 @@ func _on_quite_time_changed(val):
 	
 func _on_talk_time_changed(val):
 	talk_timer.wait_time = val
+
+
+func _on_quiet_timer_timeout() -> void:
+	if is_user_in_menu:
+		quiet_timer_timed_out = true
+		return
+	do_not_disturb = false
+	talk_timer.start()
+	movement_timer.start()
+func _on_quiet_time_set(is_on):
+	do_not_disturb = is_on
+	if do_not_disturb:
+		quiet_timer.start()
+		talk_timer.stop()
+	else:
+		quiet_timer.stop()
+		talk_timer.start()
+	

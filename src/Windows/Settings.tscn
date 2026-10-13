@@ -69,6 +69,7 @@ layout_mode = 2
 text = "Quite Time Interval (in minutes)            "
 
 [node name="QuietTime" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 tooltip_text = "If you don't want your mentor to talk at all, set it to 0."
 max_value = 1440.0

@@ -20,6 +20,7 @@ signal WaitToTalkIntervalChanged(new_value)
 var config = ConfigFile.new()
 const SETTINGS_FILE_PATH = "user://settings.ini"
 func _ready():
+	var err : Error
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
 		WaitToCloseDialogInterval = 8
 		WaitToTalkInterval = 300
@@ -29,7 +30,11 @@ func _ready():
 		config.set_value("Mentor","QuietTimeInterval",QuietTimeInterval)
 		config.save(SETTINGS_FILE_PATH)
 	else:
-		config.load(SETTINGS_FILE_PATH)
+		err = config.load(SETTINGS_FILE_PATH)
+	if err:
+		print_debug(err)
+		return
+	load_mentor_settings()
 func save(location: String, data: Dictionary ):
 	var f  = FileAccess.open(location, FileAccess.WRITE)
 	f.store(data)
@@ -39,8 +44,8 @@ func save_settings():
 	config.set_value("Mentor","WaitToCloseDialogInterval",WaitToCloseDialogInterval)
 	config.set_value("Mentor","QuietTimeInterval",QuietTimeInterval)
 	config.save(SETTINGS_FILE_PATH)
-
-func set_quiet_time(new_value):
-	QuietTimeInterval = new_value
-	QuietTimeIntervalChanged.emit(new_value)
 	
+func load_mentor_settings():
+	WaitToCloseDialogInterval = config.get_value("Mentor","WaitToCloseDialogInterval")
+	WaitToTalkInterval = config.get_value("Mentor","WaitToTalkInterval")
+	QuietTimeInterval = config.get_value("Mentor","QuietTimeInterval")
