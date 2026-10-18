@@ -16,4 +16,5 @@ enum Tone{
 @export var tone : Tone
 @export var context : String
 @export var category : String
-@export var choices : Array[WordFlow]
+@export var choices : Array[String]
+@export var goto : String

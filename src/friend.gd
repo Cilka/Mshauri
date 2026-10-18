@@ -23,6 +23,10 @@ var quiet_timer_timed_out : bool = false
 signal QuiteTimerChanged(time)
 func _ready():
 	#print_debug(Conch.read_app_usage())
+	#var companion_data = System.load_mentor_data()
+	var persona = System.load_mentor_data(System.MENTOR_PATH\
+	 + System.FileSeperator()+"rin"+System.FileSeperator()+"persona.json")
+	companion_data = persona
 	Weaver.focused_window_open.connect(_on_focused_window_open)
 	Weaver.focused_window_closed.connect(_on_focused_window_closed)
 	Weaver.dialog_box_window.popup_hide.connect(_on_chat_close)
@@ -70,8 +74,6 @@ func move_random():
 		current_tween = create_tween()
 		current_tween.finished.connect(_on_movement_finish)
 		current_tween.tween_property(self, "position", Vector2(rnd_x,rnd_y) , 8.0)
-			
-
 func get_current_window() -> int:
 	return get_window().get_window_id()
 func _clear_state():
@@ -84,11 +86,12 @@ func greet():
 func say_random():
 	if !is_talking:
 		var rand = randi_range(0, companion_data.sayings.idle.size()-1)
+		var key = companion_data.sayings.idle.keys()[rand]
 		stop_moving()
 		_clear_state()		
 		is_talking = true
 		movement_timer.stop()
-		open_chat(companion_data.sayings.idle[rand])
+		open_chat(companion_data.sayings.idle[key])
 func move_viewport():
 	pass
 

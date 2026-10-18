@@ -1,84 +1,19 @@
-[gd_resource type="Resource" script_class="Companion" load_steps=15 format=3 uid="uid://bjw7t2ol3k4os"]
+[gd_resource type="Resource" script_class="Companion" load_steps=7 format=3 uid="uid://bjw7t2ol3k4os"]
 
 [ext_resource type="Script" uid="uid://8h3x8f1rudof" path="res://src/Humanities/Visage.gd" id="1_sceg3"]
 [ext_resource type="Script" uid="uid://beo76qu6hvftk" path="res://src/Humanities/Dialectic.gd" id="2_6owhy"]
 [ext_resource type="Script" uid="uid://4omyd14nuwbm" path="res://src/Humanities/Companion.gd" id="2_h7gal"]
-[ext_resource type="Script" uid="uid://dfoq3xhv6gfhu" path="res://src/Humanities/WordFlow.gd" id="3_nt1q6"]
 [ext_resource type="Script" uid="uid://cw2md8dp27c3e" path="res://src/Humanities/Sayings.gd" id="4_manem"]
-
-[sub_resource type="Resource" id="Resource_485fm"]
-script = ExtResource("2_6owhy")
-title = ""
-sentence = "As much<p=0.5> as I fly around, I seem to <p=1.0> never get tired."
-tone = 0
-context = ""
-category = ""
-choices = Array[ExtResource("3_nt1q6")]([])
-metadata/_custom_type_script = "uid://beo76qu6hvftk"
-
-[sub_resource type="Resource" id="Resource_yum8o"]
-script = ExtResource("2_6owhy")
-title = ""
-sentence = "*H<p=1.5>u<p=1.5>ms<p=1.5> so<p=0.1>ftly*"
-tone = 0
-context = ""
-category = ""
-choices = Array[ExtResource("3_nt1q6")]([])
-metadata/_custom_type_script = "uid://beo76qu6hvftk"
-
-[sub_resource type="Resource" id="Resource_fmnij"]
-script = ExtResource("2_6owhy")
-title = "Feeling Guage - Okay"
-sentence = "I'm Okay"
-tone = 0
-context = ""
-category = ""
-choices = Array[ExtResource("3_nt1q6")]([])
-metadata/_custom_type_script = "uid://beo76qu6hvftk"
-
-[sub_resource type="Resource" id="Resource_tmx88"]
-script = ExtResource("3_nt1q6")
-parent = "Feeling Guage"
-dialog = SubResource("Resource_fmnij")
-goto = "Feeling Guage - Neutral"
-metadata/_custom_type_script = "uid://dfoq3xhv6gfhu"
-
-[sub_resource type="Resource" id="Resource_6owhy"]
-script = ExtResource("2_6owhy")
-title = "Feeling Guage - Bad"
-sentence = "Not so good..."
-tone = 0
-context = ""
-category = ""
-choices = Array[ExtResource("3_nt1q6")]([])
-metadata/_custom_type_script = "uid://beo76qu6hvftk"
-
-[sub_resource type="Resource" id="Resource_riq0u"]
-script = ExtResource("3_nt1q6")
-parent = "Feeling Guage"
-dialog = SubResource("Resource_6owhy")
-goto = ""
-metadata/_custom_type_script = "uid://dfoq3xhv6gfhu"
-
-[sub_resource type="Resource" id="Resource_71p0u"]
-script = ExtResource("2_6owhy")
-title = "Feeling Guage"
-sentence = "How<p=0.5> are <p=0.5> you<p=0.5> feeling?"
-tone = 0
-context = ""
-category = ""
-choices = Array[ExtResource("3_nt1q6")]([SubResource("Resource_tmx88"), SubResource("Resource_riq0u"), null])
-metadata/_custom_type_script = "uid://beo76qu6hvftk"
 
 [sub_resource type="Resource" id="Resource_k0mge"]
 script = ExtResource("4_manem")
-intro = Array[ExtResource("2_6owhy")]([])
-greeting = Array[ExtResource("2_6owhy")]([])
-idle = Array[ExtResource("2_6owhy")]([SubResource("Resource_485fm"), SubResource("Resource_yum8o"), SubResource("Resource_71p0u")])
-working = Array[ExtResource("2_6owhy")]([])
-emote_review = Array[ExtResource("2_6owhy")]([])
-crisis = Array[ExtResource("2_6owhy")]([])
-operation = Array[ExtResource("2_6owhy")]([])
+intro = Dictionary[String, ExtResource("2_6owhy")]({})
+greeting = Dictionary[String, ExtResource("2_6owhy")]({})
+idle = Dictionary[String, ExtResource("2_6owhy")]({})
+working = Dictionary[String, ExtResource("2_6owhy")]({})
+emote_review = Dictionary[String, ExtResource("2_6owhy")]({})
+crisis = Dictionary[String, ExtResource("2_6owhy")]({})
+operation = Dictionary[String, ExtResource("2_6owhy")]({})
 metadata/_custom_type_script = "uid://cw2md8dp27c3e"
 
 [sub_resource type="Resource" id="Resource_sceg3"]

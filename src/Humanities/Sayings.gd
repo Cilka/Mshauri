@@ -2,10 +2,10 @@ extends Resource
 
 class_name Sayings
 
-@export var intro : Array[Dialectic]
-@export var greeting :Array[Dialectic]
-@export var idle : Array[Dialectic]
-@export var working : Array[Dialectic]
-@export var emote_review : Array[Dialectic]
-@export var crisis : Array[Dialectic]
-@export var operation : Array[Dialectic]
+@export var intro : Dictionary[String,Dialectic]
+@export var greeting :Dictionary[String,Dialectic]
+@export var idle : Dictionary[String,Dialectic]
+@export var working : Dictionary[String,Dialectic]
+@export var emote_review : Dictionary[String,Dialectic]
+@export var crisis : Dictionary[String,Dialectic]
+@export var operation : Dictionary[String,Dialectic]

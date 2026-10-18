@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Mshauri"
+config/description="Because every hero needs someone in their corner!"
 run/main_scene="uid://c6bk7ahfnp41m"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/show_image=false
