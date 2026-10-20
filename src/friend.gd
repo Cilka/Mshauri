@@ -29,7 +29,7 @@ func _ready():
 	companion_data = persona
 	Weaver.focused_window_open.connect(_on_focused_window_open)
 	Weaver.focused_window_closed.connect(_on_focused_window_closed)
-	Weaver.dialog_box_window.popup_hide.connect(_on_chat_close)
+	Weaver.dialog_box_window.visibility_changed.connect(_on_chat_close)
 	talk_timer.wait_time = System.WaitToTalkInterval
 	if System.QuietTimeInterval > 0:
 		quiet_timer.wait_time =System.QuietTimeInterval

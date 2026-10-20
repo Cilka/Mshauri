@@ -7,7 +7,7 @@ extends Node
 @export_range(0, 19) var player_visibility_layer: int = 1
 @export_range(0, 19) var world_visibility_layer: int = 0
 @onready var _main_camera: Camera2D = $Camera2D
-@onready var dialog_window = $DialogBox
+@onready var dialog_window = $DialogWindow
 @export var dialog_window_position :Vector2i = Vector2i(800,800)
 var mentor_window
 var mentor : Mentor
@@ -49,7 +49,6 @@ func _ready():
 		profile_in_progress.emit()
 	if !dialog_window_set:
 		dialog_window.position = Vector2i(screen.x/2 - dialog_window.size.x/2, screen.y-dialog_window.size.y)
-	dialog_window.exclusive = false
 	
 func _process(delta: float) -> void:
 	cam.position = get_window().position

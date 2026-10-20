@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Companion" load_steps=7 format=3 uid="uid://bjw7t2ol3k4os"]
+[gd_resource type="Resource" script_class="Companion" format=3 uid="uid://bjw7t2ol3k4os"]
 
 [ext_resource type="Script" uid="uid://8h3x8f1rudof" path="res://src/Humanities/Visage.gd" id="1_sceg3"]
 [ext_resource type="Script" uid="uid://beo76qu6hvftk" path="res://src/Humanities/Dialectic.gd" id="2_6owhy"]
@@ -7,13 +7,6 @@
 
 [sub_resource type="Resource" id="Resource_k0mge"]
 script = ExtResource("4_manem")
-intro = Dictionary[String, ExtResource("2_6owhy")]({})
-greeting = Dictionary[String, ExtResource("2_6owhy")]({})
-idle = Dictionary[String, ExtResource("2_6owhy")]({})
-working = Dictionary[String, ExtResource("2_6owhy")]({})
-emote_review = Dictionary[String, ExtResource("2_6owhy")]({})
-crisis = Dictionary[String, ExtResource("2_6owhy")]({})
-operation = Dictionary[String, ExtResource("2_6owhy")]({})
 metadata/_custom_type_script = "uid://cw2md8dp27c3e"
 
 [sub_resource type="Resource" id="Resource_sceg3"]
@@ -33,6 +26,5 @@ main_trait = 2
 secondary_trait = 1
 bio = "A fairy dremt up from a child long forgoten to time. An observent, yet soft-spoken woman that seems to more patience than years around the sun."
 visage = SubResource("Resource_sceg3")
-alt_visage = Array[ExtResource("1_sceg3")]([])
 sayings = SubResource("Resource_k0mge")
 metadata/_custom_type_script = "uid://4omyd14nuwbm"

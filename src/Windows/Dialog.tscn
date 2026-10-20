@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://ctgsmlc3sim2i"]
+[gd_scene format=3 uid="uid://ctgsmlc3sim2i"]
 
 [ext_resource type="Script" uid="uid://ewu7bmcqxpag" path="res://src/Windows/DialogBox.gd" id="1_fxejj"]
 [ext_resource type="Texture2D" uid="uid://d2nfoiyhgf3ol" path="res://assets/ui/OldWorldRoyalBoarder.png" id="1_rtmn4"]
 [ext_resource type="Script" uid="uid://c11ljw6xvmm15" path="res://src/Windows/Components/word_processor.gd" id="3_ipktq"]
 
-[node name="Dialog" type="CanvasLayer"]
+[node name="Dialog" type="CanvasLayer" unique_id=758143876]
 script = ExtResource("1_fxejj")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="."]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1167746721]
 custom_minimum_size = Vector2(300, 200)
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +21,7 @@ patch_margin_top = 7
 patch_margin_right = 7
 patch_margin_bottom = 7
 
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1635210535]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,16 +33,25 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Panel" type="Panel" parent="NinePatchRect/MarginContainer"]
+[node name="Panel" type="Panel" parent="NinePatchRect/MarginContainer" unique_id=838158902]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/Panel"]
-custom_minimum_size = Vector2(200, 300)
-layout_mode = 2
-offset_right = 1.0
-offset_bottom = 23.0
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/MarginContainer/Panel" unique_id=75913644]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
 
-[node name="Message" type="RichTextLabel" parent="NinePatchRect/MarginContainer/Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/Panel/MarginContainer" unique_id=2069884540]
+layout_mode = 2
+
+[node name="Message" type="RichTextLabel" parent="NinePatchRect/MarginContainer/Panel/MarginContainer/VBoxContainer" unique_id=777607196]
 clip_contents = false
 layout_mode = 2
 bbcode_enabled = true
@@ -50,15 +59,15 @@ text = "This is too damn small"
 fit_content = true
 scroll_active = false
 
-[node name="TypeTimer" type="Timer" parent="."]
+[node name="TypeTimer" type="Timer" parent="." unique_id=1031174967]
 wait_time = 0.04
 
-[node name="PauseTimer" type="Timer" parent="."]
+[node name="PauseTimer" type="Timer" parent="." unique_id=467140355]
 
-[node name="AutoCloseTimer" type="Timer" parent="."]
+[node name="AutoCloseTimer" type="Timer" parent="." unique_id=962233402]
 wait_time = 3.5
 
-[node name="WordProcessor" type="Node" parent="."]
+[node name="WordProcessor" type="Node" parent="." unique_id=1095181629]
 script = ExtResource("3_ipktq")
 
 [connection signal="timeout" from="TypeTimer" to="." method="_on_type_timer_timeout"]

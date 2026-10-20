@@ -21,8 +21,7 @@ var config = ConfigFile.new()
 const SETTINGS_FILE_PATH = "user://settings.ini"
 const MENTOR_PATH = "user://councle"
 func _ready():
-	var err : Error
-	
+	var err : Error	
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
 		WaitToCloseDialogInterval = 8
 		WaitToTalkInterval = 300

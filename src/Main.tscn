@@ -1,17 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6bk7ahfnp41m"]
+[gd_scene format=3 uid="uid://c6bk7ahfnp41m"]
 
 [ext_resource type="Script" uid="uid://dohkd02t2y80f" path="res://src/main.gd" id="1_4gxt3"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=1387633957]
 script = ExtResource("1_4gxt3")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1460290067]
 
-[node name="DialogBox" type="Popup" parent="."]
+[node name="DialogWindow" type="Window" parent="." unique_id=1565816824]
 transparent_bg = true
+oversampling_override = 1.0
 title = "Dialog Window"
 size = Vector2i(300, 200)
-mouse_passthrough_polygon = PackedVector2Array(0, 0)
+visible = false
 exclusive = true
-always_on_top = true
+borderless = true
 transparent = true
+unfocusable = true
+popup_window = true

@@ -24,7 +24,7 @@ func _ready() -> void:
 		_quick_menu = load("res://src/Windows/QuickMenu.tscn")
 	if !_choice_box:
 		_choice_box = load("res://src/Windows/DialogOption.tscn")
-	dialog_box_window = get_node("/root/Main/DialogBox")
+	dialog_box_window = get_node("/root/Main/DialogWindow")
 func OpenDialog(window_pos : Vector2i, convo :Dialectic) -> Window:	
 	var talk = _dialog_box.instantiate()
 	var new_window = _weave(window_pos,talk)
@@ -74,7 +74,6 @@ func OpenQuickMenu(window_pos: Vector2i =Center()):
 	_windows["Quick Menu"].resize_to_control()
 	_windows["Quick Menu"].borderless = false
 	_windows["Quick Menu"].transparent = true
-	_windows["Quick Menu"].transient = true
 	_windows["Quick Menu"].transparent_bg = true
 	_windows["Quick Menu"].WINDOW_INITIAL_POSITION_ABSOLUTE
 	_windows["Quick Menu"].physics_object_picking = true
