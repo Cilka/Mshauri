@@ -1,11 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://bo5d2mf45hre2"]
+[gd_scene format=3 uid="uid://bo5d2mf45hre2"]
 
 [ext_resource type="Script" uid="uid://d3euhu1266512" path="res://src/Windows/view_window.gd" id="1_runh8"]
 
-[node name="ViewWindow" type="Window"]
+[node name="ViewWindow" type="Window" unique_id=2362755]
+oversampling_override = 1.0
 position = Vector2i(0, 36)
+size = Vector2i(100, 96)
+min_size = Vector2i(96, 96)
+max_size = Vector2i(1000, 1000)
 script = ExtResource("1_runh8")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=306587720]
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0

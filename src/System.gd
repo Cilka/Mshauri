@@ -14,21 +14,24 @@ extends Node
 	set(new_value):
 		QuietTimeInterval = new_value
 		QuietTimeIntervalChanged.emit(new_value)
+@export var QuickMenuPosition : Vector2i
 signal QuietTimeIntervalChanged(new_value)
 signal WaitToCloseDialogIntervalChanged(new_value)
 signal WaitToTalkIntervalChanged(new_value)
 var config = ConfigFile.new()
+var screen = DisplayServer.screen_get_size()
 const SETTINGS_FILE_PATH = "user://settings.ini"
 const MENTOR_PATH = "user://councle"
 func _ready():
 	var err : Error	
 	if !FileAccess.file_exists(SETTINGS_FILE_PATH):
 		WaitToCloseDialogInterval = 8
-		WaitToTalkInterval = 300
-		QuietTimeInterval = 0
+		WaitToTalkInterval = 60
+		QuietTimeInterval = 7200
 		config.set_value("Mentor","WaitToTalkInterval",WaitToTalkInterval)
 		config.set_value("Mentor","WaitToCloseDialogInterval",WaitToCloseDialogInterval)
 		config.set_value("Mentor","QuietTimeInterval",QuietTimeInterval)
+		config.set_value("Quick Menu", "Position", screen/2)
 		config.save(SETTINGS_FILE_PATH)
 	else:
 		err = config.load(SETTINGS_FILE_PATH)
@@ -39,6 +42,7 @@ func _ready():
 		DirAccess.make_dir_absolute(MENTOR_PATH)
 	
 	load_mentor_settings()
+	load_quick_menu_position()
 func save(location: String, data: Dictionary ):
 	var f  = FileAccess.open(location, FileAccess.WRITE)
 	f.store(data)
@@ -48,7 +52,11 @@ func save_settings():
 	config.set_value("Mentor","WaitToCloseDialogInterval",WaitToCloseDialogInterval)
 	config.set_value("Mentor","QuietTimeInterval",QuietTimeInterval)
 	config.save(SETTINGS_FILE_PATH)
-	
+
+func save_quick_menu_position(position: Vector2i):
+	config.set_value("Quick Menu", "Position", position)
+func load_quick_menu_position():	
+	QuickMenuPosition = config.get_value("Quick Menu","Position", screen/2)
 func load_mentor_settings():
 	WaitToCloseDialogInterval = config.get_value("Mentor","WaitToCloseDialogInterval")
 	WaitToTalkInterval = config.get_value("Mentor","WaitToTalkInterval")

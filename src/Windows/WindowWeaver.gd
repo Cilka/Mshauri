@@ -9,7 +9,9 @@ extends Node
 var _window_count : int =0
 var _windows : Dictionary[String,Window]
 var dialog_box_window 
+@warning_ignore("unused_signal")
 signal focused_window_open
+@warning_ignore("unused_signal")
 signal focused_window_closed
 func _ready() -> void:
 	if !_window:
@@ -32,6 +34,7 @@ func OpenDialog(window_pos : Vector2i, convo :Dialectic) -> Window:
 	talk.autoclose = false	
 	return _windows[new_window.title]
 	
+@warning_ignore("unused_parameter")
 func OpenSimpleDialog(window_pos : Vector2i, text :String, autoclose :bool = false) -> Window:	
 	var talk = _dialog_box.instantiate()
 	dialog_box_window.add_child(talk)
@@ -56,8 +59,8 @@ func SummonMentor(window_pos : Vector2i = TopLeft()):
 	var m = _mentor.instantiate()
 	_weave(window_pos, m, "Your Mentor", false)	
 	_windows["Your Mentor"].visible =true
-	_windows["Your Mentor"].unresizable = true
-	_windows["Your Mentor"].transient=false
+	_windows["Your Mentor"].unresizable = false
+	_windows["Your Mentor"].transient = false
 	_windows["Your Mentor"].borderless = true
 	_windows["Your Mentor"].transparent_bg = true
 	_windows["Your Mentor"].transparent = true
@@ -75,7 +78,6 @@ func OpenQuickMenu(window_pos: Vector2i =Center()):
 	_windows["Quick Menu"].borderless = false
 	_windows["Quick Menu"].transparent = true
 	_windows["Quick Menu"].transparent_bg = true
-	_windows["Quick Menu"].WINDOW_INITIAL_POSITION_ABSOLUTE
 	_windows["Quick Menu"].physics_object_picking = true
 
 	return _windows["Quick Menu"]
@@ -87,12 +89,14 @@ func CurrentScreen() -> int:
 	return DisplayServer.window_get_current_screen(get_window().get_window_id())
 	
 func Center() -> Vector2i:
+	@warning_ignore("integer_division")
 	return  Vector2i(DisplayServer.screen_get_size(CurrentScreen()).x/2,DisplayServer.screen_get_size(CurrentScreen()).y/2 )
 
 func TopLeft() -> Vector2i:
 	return Vector2i()
 func adjust_view(window: String, resize_to :Vector2):
 	var old_pos = _windows[window].position
+	@warning_ignore("narrowing_conversion")
 	_windows[window].size = Vector2i(resize_to.x, resize_to.y)
 	_windows[window].position = old_pos
 func _weave(window_pos : Vector2i,child: Node,window_title :String = "" ,is_ui : bool = true, popup: bool=false ) -> Node:
@@ -117,3 +121,7 @@ func ShowDialogWindow():
 	dialog_box_window.show()
 func HideDialogWindow():
 	dialog_box_window.hide()
+func DetachCamera(window):
+	_windows[window].get_node("Camera2D").enabled = false
+func ReattachCamera(window):
+	_windows[window].get_node("Camera2D").enabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2hk6qatv35av"]
+[gd_scene format=3 uid="uid://d2hk6qatv35av"]
 
 [ext_resource type="Script" uid="uid://dw563sedf0den" path="res://src/friend.gd" id="1_paqds"]
 [ext_resource type="Resource" uid="uid://bjw7t2ol3k4os" path="res://assets/mentors/Rin.tres" id="2_7al2t"]
@@ -79,37 +79,35 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_paqds"]
 size = Vector2(64, 56)
 
-[node name="Friend" type="CharacterBody2D"]
+[node name="Friend" type="CharacterBody2D" unique_id=133116334]
 visibility_layer = 2
 motion_mode = 1
 script = ExtResource("1_paqds")
 companion_data = ExtResource("2_7al2t")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2037932048]
 visibility_layer = 2
 texture = ExtResource("2_paqds")
 hframes = 5
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_e23kd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1951465256]
+libraries/ = SubResource("AnimationLibrary_e23kd")
 
-[node name="MouseDetector" type="Area2D" parent="."]
+[node name="MouseDetector" type="Area2D" parent="." unique_id=939299705]
 script = ExtResource("3_8gtfr")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouseDetector" unique_id=1216800418]
 shape = SubResource("RectangleShape2D_paqds")
 
-[node name="MoveTimer" type="Timer" parent="."]
+[node name="MoveTimer" type="Timer" parent="." unique_id=1120647939]
 wait_time = 8.0
 autostart = true
 
-[node name="TalkTimer" type="Timer" parent="."]
+[node name="TalkTimer" type="Timer" parent="." unique_id=28942213]
 wait_time = 20.0
 autostart = true
 
-[node name="QuietTimer" type="Timer" parent="."]
+[node name="QuietTimer" type="Timer" parent="." unique_id=2058722395]
 one_shot = true
 
 [connection signal="mouse_entered" from="MouseDetector" to="." method="_on_mouse_detector_mouse_entered"]

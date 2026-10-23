@@ -6,6 +6,8 @@ extends CanvasLayer
 @onready var quiet_buton : Button = get_node("VBoxContainer/OptionsContainer/Options/Quiet")
 @onready var quiet_timer_label: Label = get_node("VBoxContainer/OptionsContainer/Options/PanelContainer/Quiet Timer")
 @export var expanded_size : Vector2 = Vector2i(128, 600)
+var quick_menu_icon_closed : CompressedTexture2D
+var quick_menu_icon_open : CompressedTexture2D
 var can_drag : bool = false
 var drag : bool = false
 var is_in_quiet_time : bool = false
@@ -13,6 +15,8 @@ var current_time: float = 0
 var quiet_button_text = "Ask for Quiet Time"
 signal quiet_time_set(is_on)
 func _ready() -> void:
+	quick_menu_icon_closed =  load("res://assets/ui/QuickMenuIconClosed.png")
+	quick_menu_icon_open = load("res://assets/ui/QuickMenuIconOpen.png")
 	button.pressed.connect(_handle_mouse_input)
 	if Weaver._windows.has("Your Mentor"):
 		mentor_toggle.text = "Dismiss Mentor"
@@ -24,11 +28,13 @@ func _input(event: InputEvent) -> void:
 			drag = true
 		elif event.button_index == MOUSE_BUTTON_LEFT && event.is_released():
 			drag = false
-
+		if event.double_click:
+			_on_activation()
+			
 func _process(delta: float) -> void:
 	if drag:
 		#get_window().start_drag()
-		var drag_offset = get_window().size/2
+		var drag_offset = button.position + button.texture_normal.get_size()/2
 		var mouse_pos =  DisplayServer.mouse_get_position()
 		var window_pos = mouse_pos - Vector2i(drag_offset.x, drag_offset.y)
 		DisplayServer.window_set_position(window_pos, get_window().get_window_id())
@@ -43,12 +49,15 @@ func _process(delta: float) -> void:
 		
 func _on_activation():
 	options.visible = !options.visible
+	if options.visible:
+		button.texture_normal = quick_menu_icon_open
+	else:
+		button.texture_normal = quick_menu_icon_closed
 func _on_held():
 	drag = true
 func _on_release():
 	drag = false
-
-
+	System.save_quick_menu_position(get_window().position)
 func _on_close_menu_pressed() -> void:
 	options.visible = false
 	drag = false
@@ -74,7 +83,7 @@ func _handle_mouse_input():
 	if options.visible:
 		can_drag = true
 	else:
-		_on_activation()
+		
 		can_drag = false
 		drag = false
 func _on_settings_pressed() -> void:

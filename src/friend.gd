@@ -19,7 +19,8 @@ var current_tween : Tween
 var chat_window : Window
 var is_user_in_menu: bool = false
 var quiet_timer_timed_out : bool = false
-
+var random_chat_buffer = {}
+var random_chat_buffer_limit : int = 6
 signal QuiteTimerChanged(time)
 func _ready():
 	#print_debug(Conch.read_app_usage())
@@ -39,15 +40,25 @@ func _ready():
 	.quiet_time_set.connect(_on_quiet_time_set)
 func _process(delta: float) -> void:
 	#
+	#if !is_held:
 	get_window().position = position
 	_anim_state()
+	#else:
+		#position = get_local_mouse_position()
 	pass
 	
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if is_hovered && event.double_click:
+		if !is_held && is_hovered && event.button_index == MOUSE_BUTTON_LEFT:
+			is_held = true
 			print_debug("Mouse pos: " + str(event.position))
-
+		elif is_held &&  event.button_index == MOUSE_BUTTON_LEFT:
+			is_held = false
+			#get_window().size = get_window().min_size
+			print_debug("let goooooo!!!!")
+	if is_held && event is InputEventMouseMotion:
+		#get_window().size =  get_window().max_size
+		position =  DisplayServer.mouse_get_position()- get_window().size/2
 			#Weaver.OpenSettings()
 func open_chat(dialog: Dialectic, autoclose :bool  = true):
 	if do_not_disturb:
@@ -85,13 +96,18 @@ func greet():
 	pass
 func say_random():
 	if !is_talking:
-		var rand = randi_range(0, companion_data.sayings.idle.size()-1)
-		var key = companion_data.sayings.idle.keys()[rand]
+		var key = companion_data.sayings.idle.keys().pick_random()
+		random_chat_buffer[key] =  companion_data.sayings.idle[key]
+		if random_chat_buffer.size() > random_chat_buffer_limit:
+			var pop = random_chat_buffer.keys()[0]
+			companion_data.sayings.idle[pop] = random_chat_buffer[pop]
+			random_chat_buffer.erase(pop)
 		stop_moving()
-		_clear_state()		
+		_clear_state()
 		is_talking = true
 		movement_timer.stop()
 		open_chat(companion_data.sayings.idle[key])
+		companion_data.sayings.idle.erase(key)
 func move_viewport():
 	pass
 
@@ -104,10 +120,6 @@ func stop_moving():
 func _on_timer_timeout() -> void:
 	move_random()
 	
-func _update_window(delta :float) -> void:
-	get_window().position = Vector2i(get_window().position.x +  global_position.x * delta, get_window().position.y +  global_position.y * delta)
-	print_debug('Movie Window Rect Pos:' +str(get_window().position))
-
 func _anim_state():
 	if is_moving:
 		anim.play("Move")
@@ -119,7 +131,6 @@ func _anim_state():
 func _on_mouse_detector_mouse_entered() -> void:
 	stop_moving()
 	is_hovered = true
-	#velocity = Vector2.ZERO
 	print_debug("Found Mouse!")
 func _on_mouse_detector_mouse_exited() -> void:
 	is_hovered = false

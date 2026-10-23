@@ -24,9 +24,7 @@ func _ready():
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
 	var screen = DisplayServer.screen_get_usable_rect(get_window().current_screen).size
 	if OS.get_name() == "Linux":
-		#TODO:need to get menu position dynamicly. Too Tired to do this proper
-		var menu_size = Vector2i(128,600) 
-		Weaver.OpenQuickMenu(Vector2i(screen.x - menu_size.x, screen.y-600))
+		Weaver.OpenQuickMenu(System.QuickMenuPosition)
 	mentor_window = Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
 

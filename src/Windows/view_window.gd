@@ -14,6 +14,8 @@ func _ready() -> void:
 	close_requested.connect(queue_free) # Actually close the window when clicking the close button
 	close_requested.connect(_on_close_requested)
 func _process(delta: float) -> void:
+	if !_Camera.enabled:
+		return
 	if ui_view_only:
 		position = position
 		return
