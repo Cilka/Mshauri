@@ -1,0 +1,528 @@
+{
+	"name": "Rin",
+	"main_trait": "Sweet",
+	"secondary_trait": "Normal",
+	"bio":"A fairy dream up by a child long forgotten to time. An observant, yet soft-spoken fae that seems to more have patience than years around the sun.",
+	"visage":{
+		"image":"Rin.png",
+		"hframes":5,
+		"vframes":1,
+		"animations":
+		[
+
+			{
+				"name": "idle",
+				"loop":true,
+				"length":1.0,
+				"keys":
+				[
+					{
+						"time":0.0,
+						"frame":0,
+						"easing":1.0
+					},
+					{
+						"time":0.5,
+						"frame":1,
+						"easing":1.0
+					},
+				]
+			},
+			{
+				"name": "move",
+				"loop":true,
+				"length":1.0,
+				"keys":
+				[
+					{
+						"time":0.0,
+						"frame":2,
+						"easing":1.0
+					},
+					{
+						"time":0.4667,
+						"frame":3,
+						"easing":1.0
+					},
+				]
+			},
+			{
+				"name":"talk",
+				"loop":true,
+				"length":1.0,
+				"keys":
+				[
+					{
+						"time":0.0,
+						"frame":4,
+						"easing":1.0
+					},
+					{
+						"time":0.4333,
+						"frame":0,
+						"easing":1.0
+					},
+				]
+			}
+		],
+		"is_pixel":true
+	},
+	"sayings":{
+		"intro":[
+			{
+				"title":"First-Time Introduction",
+				"sentence": "",
+				"context": "",
+				"category": "",
+				"goto":"",
+				"choices": 
+				{
+					"Who are you":"intro:First-Time pt2"
+				}
+			}
+		],
+		"greeting": [
+			{
+				"title":"",
+				"sentence": "",
+				"context": "",
+				"category": "",
+				"choices":{},
+				"goto":"greeting:Morning Greeting pt2"
+			}
+		],
+		"idle":[
+			{
+				"sentence": "As long as you keep breathing, you can keep hoping!",
+				"category": "Inspire"
+			},
+			{
+				"sentence": "Remember to drink water while you can!",
+				"category": "Health"
+			},
+			{
+				"sentence": "If you gave 10% of you're energy and that's all you had, then you gave 100%",
+				"category": "Motivational"
+			},
+			{
+				"sentence": "Sometimes you don't have to do more. You just have to do what you can right now.",
+				"category": "Motivational"
+			},
+			{
+				"sentence": "Remember you're a human, not an automaton. You're allow to rest.",
+				"category": "Health"
+			},
+			{
+				"sentence": "Remember to take your medicine if you need to!",
+				"category": "Health"
+			},
+			{
+				"sentence": "You're not too slow. You're going at your own pace.",
+				"category": "Motivational"
+			},
+			{
+				"sentence": "No one has ever yelled their way to solving problems.",
+				"category": "Comfort"
+			},
+			{
+				"sentence": "Don't fret. I'll be here as long as you need me",
+				"category": "Comfort"
+			},
+			{
+				"sentence": "If you body is telling you to stop, please try to listen!",
+				"category": "Health"
+			},
+			{
+				"sentence": "You do have 24 hours in a day. Not every hour has to be productive.",
+				"category": "Motivational"
+			},
+			{
+				"sentence": "*hums a simple tune*",
+				"category": "Random"
+			},
+			{
+				"sentence": "Try to take deep breaths before you need to take deep breaths",
+				"category": "Health"
+			},
+			{
+				"sentence": "You are not just the some of your parts. You're much more precious than that.",
+				"category": "Comfort"
+			},
+			{
+				"sentence": "It's okay to cry.",
+				"category": "Comfort"
+			},
+			{
+				"sentence": "Its okay to push yourself, but remember to keep your simplest milestone just.",
+				"category": "Motivational"
+			},
+			{
+				"sentence": "Its hard to think on an empty stomach. Try to have snacks close by!",
+				"category": "Health"
+			},
+			{
+				"sentence": "Remember to get up and stretch or your butt will be flat as a pancake!",
+				"category": "Health"
+			},
+			{
+				"sentence": "Don't worry if you took longer than you would like. There's always tomorrow!",
+				"category": "Comfort"
+			},
+			{
+				"sentence": "Oh don't worry about me! I don't get tired fluttering like this!",
+				"category": "Random"
+			},
+			{
+				"sentence": "I heard smelling onions all day could  help with a stuffy nose. But... I really hope you like the smell of onions...",
+				"category": "Health"
+			},
+			{
+				"sentence": "Everything is exercise as long as you move you body!",
+				"category": "Health"
+			},
+			{
+				"sentence": "If your hands are hurting you, why not lay them flat on your desk and press onto them?",
+				"category": "Health"
+			},
+			{
+				"sentence": "Remember to save your work often!",
+				"category": "Random"
+			},
+			{
+				"sentence": "Dooo doo do dooo. Do do doooo do do do...",
+				"category": "Random"
+			},
+			{
+				"sentence": "The thoughts in your head are not you little cheri. I won't judge you for having them.",
+				"category": "Comfort"
+			},
+			{
+				"sentence": "It doesn't matter what other people think of you. What do you think of you?",
+				"category": "Comforting"
+			},
+			{
+				"sentence": "If you need to step away, by all means take as much time as you need.",
+				"category": "Health"
+			},
+			{
+				"sentence": "As much harm as you think you can do, you can do just as much good. I know you're a good person!",
+				"category": "Comfort"
+			},
+			{
+				"sentence":"Sometimes you don't need to step out of your comfort zone. Simply gazing upon it is enough.",
+				"category":"Comfort"
+			},
+			{
+				"sentence":"There's no project that's worth your health.",
+				"category":"Health"
+			},
+			{
+				"sentence":"Sometimes believing in a little magic is better than knowing the facts",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"Doing less when you need to can help you do more when you want to.",
+				"category":"Comfort"
+			},
+			{
+				"sentence":"Try to go by your needs rather than the average.",
+				"category":"Health"
+			},
+			{
+				"sentence":"It will be frustrating trying to know yourself, but don't worry. You'll have a whole life time to figure that out.",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"I know you can do it!",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"Have you ate today?",
+				"category":"Health"
+			},
+			{
+				"sentence":"Feeling tired? Why not rest for a while?",
+				"category":"Health"
+			},
+			{
+				"sentence":"Sun and water are very nutritious for the mind and soul!",
+				"category":"Health"
+			},
+			{
+				"sentence":"When people yell at you, they may not always be mad at you.",
+				"category":"Comforting"
+			},
+			{
+				"sentence":"You're life may feel like a prison, but your mind is always free.",
+				"category":"Comforting"
+			},
+			{
+				"sentence":"Elders are people, not infallible",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"A younger person that has a lot of skill doesn't mean its too late for you.",
+				"category":"Inspiration"
+			},
+			{
+				"sentence":"Try to explore what makes you you. When you find a clue write it down.",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"Why are pixie sticks called that? They look nothing like a pixie.",
+				"category":"Random"
+			},
+			{
+				"sentence":"It's okay to take big steps if small steps are too overwhelming.",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"I wonder if was the first person that thought of an accordion was a pianist and a glassblower?",
+				"category":"Random"
+			},
+			{
+				"sentence":"Try your best to get more like when the season turn cold.",
+				"category":"Health"
+			},
+			{
+				"sentence":"F is for friends that do stuff together. U is for you and meeeeeeee!",
+				"category":"Random"
+			},
+			{
+				"sentence":"I know you humans are fascinated with chrono keepers, but why does everyone say \"tick tock\" so much?",
+				"category":"Random"
+			},
+			{
+				"sentence":"Your emotions are not something to be controlled but understood. When they are too intense, them wash over you before dissecting why.",
+				"category":"Health"
+			},
+			
+			{
+				"sentence":"Remember there are no bad emotions. It's what you do with them that make ti good or bad.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"When you can't think of anything more to add, try to rest on it.",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"Skill is not finite, but that doesn't mean you should pursue it endlessly.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Work is a part of life. I'm not sure why you humans need to balance it so much.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Old McDonald had a farm, but how did he get that farm and why is he alone?",
+				"category":"Random"
+			},            
+			{
+				"sentence":"Remember to save often!",
+				"category":"Motivational"
+			},            
+			{
+				"sentence":"Some sacrifices aren't worth it. You are your future self!",
+				"category":"Inspirational"
+			},            
+			{
+				"sentence":"You're not a bad person just because you have bad thoughts.",
+				"category":"Comfort"
+			},
+			
+			{
+				"sentence":"Have you called your lovelies today?",
+				"category":"Health"
+			},
+			
+			{
+				"sentence":"\"Childish\" is something humans say to dismiss emotions they don't want to take the time to understand.",
+				"category":"Comfort"
+			},            
+			{
+				"sentence":"Did you remember to stretch, cheri?",
+				"category":"Health"
+			},
+			{
+				"sentence":"Sometimes a plan just gets in the way. Explore a little!",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"It's okay to be angry at things you can't change.",
+				"category":"Comfort"
+			},            
+			{
+				"sentence":"The harmonica looks so much fun to play with! I wish it wasn't so big though...",
+				"category":"Random"
+			},
+			{
+				"sentence":"It's really nice relaxing here with you!",
+				"category":"Random"
+			},
+			{
+				"sentence":"Just because someone else can do everything on their own doesn't mean you're less than for needing help.",
+				"category":"Comfort"
+			},
+			{
+				"sentence":"New things tend to be awkward at first. Don't worry it will grow on you!",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"Sometimes you need to a lot of nothing to see something.",
+				"category":"Inspirational"
+			},
+			{
+				"sentence":"Why would you eat short? That seams icky.",
+				"category":"Random"
+			},
+			{
+				"sentence":"You don't have to believe in yourself now. Just believe in the self that could believe in you!",
+				"category":"Comfort"
+			},
+			{
+				"sentence":"She was selling seashells by the seashore... I don't think hermit crabs need sea-dollars, do they?",
+				"category":"Random"
+			},
+			{
+				"sentence":"You haven't done anything and you still are tired? I think you did a little bit more than you realize.",
+				"category":"Health"
+			},            
+			{
+				"sentence":"Sometimes you don't need the full picture to know what you are looking at.",
+				"category":"Inspirational"
+			},
+			{
+				"sentence":"If you feel anger towards yourself I'm sure its probably justified. That doesn't mean deserve neglect.",
+				"category":"Comfort"
+			},
+			{
+				"sentence":"Yelling doesn't mean that you're right or wrong.",
+				"category":"Inspirational"
+			},
+			{
+				"sentence":"Taking naps doesn't make you lazy. It makes you rested!",
+				"category":"Health"
+			},
+			{
+				"sentence":"The voice that tells you that your bad just hasn't seen the good yet. I know you can prove it wrong!",
+				"category":"Motivational"
+			},
+			{
+				"sentence":"Every flower was a seed once in their life.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Time is an construct made by humans not a law of nature.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"If you created it, care for it, tended it, I would say you're a responsible parent.",
+				"category":"Inspirational"
+			},
+			
+			{
+				"sentence":"I don't think babies can be ugly. Just undesirable to people with shallow hearts.",
+				"category":"Comfort"
+			},
+			
+			{
+				"sentence":"I'm not sure how people can say \"don't take it personal\" while hurting them. Is that suppose to be what little one's say \"a prank\"?",
+				"category":"Random"
+			},
+			
+			{
+				"sentence":"If you take on so many quests that you can't get out of bed, maybe its time to start carrying less.",
+				"category":"Health"
+			},
+			
+			{
+				"sentence":"If it takes you all day to do one thing, that's okay. At least that's done now!",
+				"category":"Comfort"
+			},
+			
+			{
+				"sentence":"\"Sensitive\" people tend to see things deeper than others. I don't find it to be a bad thing.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Did you take your medicine today?",
+				"category":"Health"
+			},
+			
+			{
+				"sentence":"When you don't know your limits, find them. When you find them, make sure to keep them some place memorable!",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Everyone needs their own space. Even if its within yourself.",
+				"category":"Comfort"
+			},
+			
+			{
+				"sentence":"Not everyone will get you, but at least you have to get you.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"How old am I?\n<p=3.0>...<p=3.0>\nNot sure... I stopped counting centuries ago!",
+				"category":"Random"
+			},
+			
+			{
+				"sentence":"Lazy days are just your body telling you you deserve a break!",
+				"category":"Comfort"
+			},            
+			{
+				"sentence":"Wanting worldly trinkets isn't a bad thing.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Topaz are so pretty. They remind me of the desert sunset.",
+				"category":"Random"
+			},
+			
+			{
+				"sentence":"The kitty says hello, but the puppy only barks...",
+				"category":"Random"
+			},
+			
+			{
+				"sentence":"There are some obligations that are not worth seeing to the end.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Everyone loves cookies, but few people care to notice the oven baking those cookies.",
+				"category":"Motivational"
+			},
+			
+			{
+				"sentence":"Holding a grudge is only bad if it hurts you too.",
+				"category":"Comfort"
+			},
+			
+			{
+				"sentence":"Competition only exists if the other person agrees to compete.",
+				"category":"Inspirational"
+			},
+			
+			{
+				"sentence":"Only you can tell what your body is feeling. Everyone else has to guess.",
+				"category":"Health"
+			},            
+			{
+				"sentence":"Try to do YOUR best!",
+				"category":"Motivational"
+			}
+		]
+	}
+}

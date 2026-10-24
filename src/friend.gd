@@ -25,9 +25,9 @@ signal QuiteTimerChanged(time)
 func _ready():
 	#print_debug(Conch.read_app_usage())
 	#var companion_data = System.load_mentor_data()
-	var persona = System.load_mentor_data(System.MENTOR_PATH\
-	 + System.FileSeperator()+"rin"+System.FileSeperator()+"persona.json")
+	var persona = System.load_mentor_data(System.get_prefered_mentor())
 	companion_data = persona
+	_ready_mentor()
 	Weaver.focused_window_open.connect(_on_focused_window_open)
 	Weaver.focused_window_closed.connect(_on_focused_window_closed)
 	Weaver.dialog_box_window.visibility_changed.connect(_on_chat_close)
@@ -39,14 +39,18 @@ func _ready():
 	get_tree().get_first_node_in_group("QuickMenuWindow")\
 	.quiet_time_set.connect(_on_quiet_time_set)
 func _process(delta: float) -> void:
-	#
-	#if !is_held:
 	get_window().position = position
 	_anim_state()
-	#else:
-		#position = get_local_mouse_position()
-	pass
-	
+
+func _ready_mentor():
+	var mentor_path = System.MENTOR_PATH+"/"+System.PreferredMentor+"/"
+	var image = Image.load_from_file(mentor_path + companion_data.visage.image)
+	sprite.texture = ImageTexture.create_from_image(image)
+	sprite.hframes = companion_data.visage.hframes
+	sprite.vframes = companion_data.visage.vframes
+	var g_anim =  anim.get_animation_library("") as AnimationLibrary
+	for a in companion_data.visage.animations.get_animation_list():
+		g_anim.add_animation(a, companion_data.visage.animations.get_animation(a))
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if !is_held && is_hovered && event.button_index == MOUSE_BUTTON_LEFT:
@@ -122,11 +126,11 @@ func _on_timer_timeout() -> void:
 	
 func _anim_state():
 	if is_moving:
-		anim.play("Move")
+		anim.play("move")
 	elif !is_moving && !is_held:
-		anim.play("Idle")
+		anim.play("idle")
 	elif is_talking:
-		anim.play("Talk")
+		anim.play("talk")
 
 func _on_mouse_detector_mouse_entered() -> void:
 	stop_moving()
