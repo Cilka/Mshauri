@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctwcnthhp6g1h" path="res://src/Windows/quick_menu.gd" id="1_dd8xy"]
 [ext_resource type="Texture2D" uid="uid://da0g0yhk7duf2" path="res://assets/ui/QuickMenuIconClosed.png" id="2_dd8xy"]
+[ext_resource type="Script" uid="uid://xexymk8dm4c6" path="res://src/Windows/menu_activator.gd" id="3_ryguw"]
 
 [node name="Menu" type="CanvasLayer" unique_id=324271406 groups=["QuickMenuWindow"]]
 script = ExtResource("1_dd8xy")
@@ -21,6 +22,7 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="OptionsContainer" type="MarginContainer" parent="VBoxContainer" unique_id=1083339534]
+visible = false
 custom_minimum_size = Vector2(128, 300)
 layout_mode = 2
 size_flags_vertical = 3
@@ -80,6 +82,7 @@ size_flags_vertical = 10
 texture_normal = ExtResource("2_dd8xy")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("3_ryguw")
 
 [connection signal="pressed" from="VBoxContainer/OptionsContainer/Options/ToggleMentor" to="." method="_on_toggle_mentor_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsContainer/Options/Quiet" to="." method="_on_quiet_pressed"]

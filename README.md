@@ -1,86 +1,34 @@
-# SimpleJsonClassConverter
+﻿# Mshauri: The Cyberphile's Confidant
 
-This GDScript provides a set of utility functions for converting Godot classes to JSON dictionaries and vice versa. 
+## What is this about?
 
-## Features
+Mshauri is a mental health application in a form of a desktop assistant. In the digital age, it is becoming harder and harder to start new projects are creative endeavors due to the overwhelming negative commentary all over the internet. I believe your reality is what is repeated in front of you. 
 
-* **Serialization (Class to JSON):**
-	* Converts Godot class instances to JSON-like dictionaries.
-	* Handles nested objects and arrays recursively.
-	* Supports saving JSON data to files (with optional encryption).
-	* Will store all scripts names and types in JSON.
-	* Support resources.
-	* Supports dictionnaries.
-* **Deserialization (JSON to Class):**
-	* Loads JSON data from files (with optional decryption).
-	* No need to specify target class.
-	* Converts JSON strings and dictionaries into class instances.
-	* Handles nested object structures.
+Mshauri is Swahili for mentor. This assistant's main goal is to teach the mentee how to be kind towards themselves when other's are not. Whether that be simple quotes to get though the day, or a lengthy conversation to bring personal pain points to light, your mentor will always be happy to guide you to your happier self.
 
-* **Automatic Type Recognition:**  Intelligently handles various data types.
+## What can it do?
 
-## Installation
+As of writing, there are over 100 quotes the mentor has to keep you company. You may ask for quiet time as the mentor will not say anything within X amount of minutes before talking again. You may also summon and dispel the mentor at any point and time.
 
-1. Create a new script file named `SimpleJsonClassConverter.gd` (or similar) in your Godot project.
-2. Copy and paste the code provided into the script file.
+## Requirements
 
-## Usage
+The only requirement is having OpenGL 3.3 installed. 
 
-### 1. Class to JSON
+## How to install
 
-**a) Convert a Class Instance to a JSON Dictionary:**
+Download the version for your OS and extract. For windows, double click on Mshauri.exe. For linux, double click on Mshauri.x86_64 
 
-```gdscript
-# Assume you have a class named 'SaveData':
-var save_data = SaveData.new()
-# ... (Set properties of save_data)
+## How to use
 
-# Convert to a JSON dictionary:
-var json_data = SimpleJsonClassConverter.class_to_json(save_data) 
+After running the executable, double click on the quick menu sigil (Should look like a circular rune-like icon). You may adjust settings for your mentor including quieting the mentor for a time. Keep in mind all timers reset when settings are applied
 
-# json_data now contains a Dictionary representation of your class instance
-```
+## How much will this cost me?
 
+Short answer, nothing. Part of the reason this was created was to give people that can't afford therapy some support. You can use this with conjunction with therapy as well, but think of this as another tool in your mental health journey. 
 
-**b) Save JSON Data to a File:**
+This is an open source project that anyone can modify at anytime. That being said, if there is any version of this application that comes with a fee, then it is not the original. This project will never ask for a fee to use.
 
-```gdscript
-var file_success: bool = SimpleJsonClassConverter.store_json_file("user://saves/save_data.json", json_data, "my_secret_key")  # Optional encryption key
+## AI Usage
 
-# Check if saving was successful:
-if file_success:
-	print("Player data saved successfully!")
-else:
-	print("Error saving player data.") 
-```
+Technically there is AI in this application, but it is the equivalent of DOOM enemy pathing compared to the all consuming, all invasive basilisk that we are unfortunately accustomed to. That being said, all quotes that the mentor has are from the creator's mind, experiences, and interactions with other people and media. Code is drawn from my experiences as a programmer and help I gathered from other people or rouge forums (you can check the code out yourself if you want). I do not want to lie to you and say that there is no AI usage due to technicality, but this application will respect your sovereignty.
 
-### 2. JSON to Class
-
-**a) Load JSON Data from a File:**
-
-```gdscript
-var loaded_data: SaveData = SimpleJsonClassConverter.json_file_to_class("user://saves/save_data.json", "my_secret_key") # Optional decryption key
-
-if loaded_data:
-	# ... (Access properties of the loaded_data)
-else:
-	print("Error loading player data.")
-```
-
-**b) Convert a JSON Dictionary to a Class Instance:**
-
-```gdscript
-var json_dict = { "name": "Bob", "score": 2000 }
-var player_data: PlayerData = SimpleJsonClassConverter.json_to_class(json_dict)
-```
-
-## Important Notes
-
-* **Exported Properties:** Only exported properties (those declared with `@export`) or properties with the `[PROPERTY_USAGE_STORAGE]` meta will be serialized and deserialized.
-
-* **Property naming:** Don't use "gd_script" or "gd_type" in any property name or dictionary key as they are used for internal type storage for Serialization and Deserialization.
-## Credits
-
-Inspired by https://github.com/EiTaNBaRiBoA/JsonClassConverter.
-
-Thanks to him

@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfciue722rua7"]
+[gd_scene format=3 uid="uid://dfciue722rua7"]
 
 [ext_resource type="Script" uid="uid://dqlwacwuuc05c" path="res://src/Windows/SettingsWindow.gd" id="1_ebvph"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="CanvasLayer" type="CanvasLayer" unique_id=2034021652]
 script = ExtResource("1_ebvph")
 
-[node name="TabContainer" type="TabContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="." unique_id=174195312]
 custom_minimum_size = Vector2(640, 480)
 offset_right = 500.0
 offset_bottom = 208.0
@@ -13,78 +13,125 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 current_tab = 0
 
-[node name="Mentor" type="PanelContainer" parent="TabContainer"]
+[node name="Mentor" type="PanelContainer" parent="TabContainer" unique_id=1890853964]
 layout_mode = 2
 metadata/_tab_index = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Mentor"]
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/Mentor" unique_id=992730806]
 layout_mode = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Mentor/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Mentor/MarginContainer" unique_id=1328925516]
 layout_mode = 2
 
-[node name="TalkIntervalContainer" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer"]
+[node name="TalkIntervalContainer" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer" unique_id=458708302]
 layout_mode = 2
 
-[node name="TalkIntervalLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer"]
+[node name="TalkIntervalLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer" unique_id=1079901469]
 layout_mode = 2
 text = "Time To Talk Interval (in seconds)         "
 
-[node name="TalkInterval" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer"]
+[node name="TalkInterval" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer" unique_id=1137879865]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 min_value = 1.0
 max_value = 3600.0
 value = 300.0
 
-[node name="TalkIntervalValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer"]
+[node name="TalkIntervalValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/TalkIntervalContainer" unique_id=392728080]
 layout_mode = 2
 
-[node name="DialogCloseContainer" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer"]
+[node name="DialogCloseContainer" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer" unique_id=872597230]
 layout_mode = 2
 
-[node name="DialogCloseLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer"]
+[node name="DialogCloseLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer" unique_id=1942446926]
 layout_mode = 2
 text = "Dialog wait time to close (in seconds)  "
 
-[node name="DialogClose" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer"]
+[node name="DialogClose" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer" unique_id=1598832051]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 max_value = 60.0
 value = 5.0
 ticks_on_borders = true
 
-[node name="DialogCloseValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer"]
+[node name="DialogCloseValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/DialogCloseContainer" unique_id=822411774]
 layout_mode = 2
 
-[node name="QuietTimeInterval" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer"]
+[node name="QuietTimeInterval" type="HBoxContainer" parent="TabContainer/Mentor/MarginContainer/VBoxContainer" unique_id=1243783499]
 layout_mode = 2
 
-[node name="QuietTimeLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+[node name="QuietTimeLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval" unique_id=2417111]
 layout_mode = 2
 text = "Quite Time Interval (in minutes)            "
 
-[node name="QuietTime" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+[node name="QuietTime" type="HSlider" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval" unique_id=397279942]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 tooltip_text = "If you don't want your mentor to talk at all, set it to 0."
 max_value = 1440.0
 
-[node name="QuietTimeValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval"]
+[node name="QuietTimeValueLabel" type="Label" parent="TabContainer/Mentor/MarginContainer/VBoxContainer/QuietTimeInterval" unique_id=1191770075]
 layout_mode = 2
 
-[node name="Apply" type="Button" parent="TabContainer/Mentor/MarginContainer"]
+[node name="System" type="Panel" parent="TabContainer" unique_id=902012883]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="TabContainer/System" unique_id=1909817285]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/System/MarginContainer" unique_id=1220017462]
+layout_mode = 2
+
+[node name="MainWindowContiner" type="HBoxContainer" parent="TabContainer/System/MarginContainer/VBoxContainer" unique_id=128091842]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TabContainer/System/MarginContainer/VBoxContainer/MainWindowContiner" unique_id=1895058790]
+layout_mode = 2
+text = "Main Window:"
+
+[node name="WindowOptions" type="OptionButton" parent="TabContainer/System/MarginContainer/VBoxContainer/MainWindowContiner" unique_id=1835778459]
+layout_mode = 2
+
+[node name="Apply" type="Button" parent="." unique_id=101054273]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -26.0
+offset_top = -31.0
+offset_right = 26.0
+grow_horizontal = 2
+grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 text = "Apply"
 
-[node name="Exit" type="Button" parent="TabContainer/Mentor/MarginContainer"]
-layout_mode = 2
+[node name="Exit" type="Button" parent="." unique_id=840376510]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -37.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
 size_flags_horizontal = 8
 size_flags_vertical = 8
 text = "Exit

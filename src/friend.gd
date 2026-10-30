@@ -44,8 +44,13 @@ func _process(delta: float) -> void:
 
 func _ready_mentor():
 	var mentor_path = System.MENTOR_PATH+"/"+System.PreferredMentor+"/"
-	var image = Image.load_from_file(mentor_path + companion_data.visage.image)
-	sprite.texture = ImageTexture.create_from_image(image)
+	#for some reason PNGs do not copy over using DirAccess.CopyAbsolute
+	if System.PreferredMentor == "Rin":
+		var image = load("res://data/Rin/Rin.png") as CompressedTexture2D
+		sprite.texture = image
+	else:
+		var image = Image.load_from_file(mentor_path + companion_data.visage.image)
+		sprite.texture = ImageTexture.create_from_image(image)
 	sprite.hframes = companion_data.visage.hframes
 	sprite.vframes = companion_data.visage.vframes
 	var g_anim =  anim.get_animation_library("") as AnimationLibrary

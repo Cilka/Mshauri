@@ -22,9 +22,8 @@ func _ready():
 	
 	# Can also break on some systems
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
-	var screen = DisplayServer.screen_get_usable_rect(get_window().current_screen).size
-	if OS.get_name() == "Linux":
-		Weaver.OpenQuickMenu(System.QuickMenuPosition)
+	var screen = DisplayServer.screen_get_usable_rect(System.MainWindow).size
+	Weaver.OpenQuickMenu(System.QuickMenuPosition)
 	mentor_window = Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
 

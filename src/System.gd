@@ -16,6 +16,7 @@ extends Node
 		QuietTimeIntervalChanged.emit(new_value)
 @export var QuickMenuPosition : Vector2i
 @export var PreferredMentor :String
+@export var MainWindow: int
 signal QuietTimeIntervalChanged(new_value)
 signal WaitToCloseDialogIntervalChanged(new_value)
 signal WaitToTalkIntervalChanged(new_value)
@@ -30,11 +31,13 @@ func _ready():
 		WaitToTalkInterval = 60
 		QuietTimeInterval = 7200
 		PreferredMentor = "Rin"
+		MainWindow = 0
 		config.set_value("Mentor","WaitToTalkInterval",WaitToTalkInterval)
 		config.set_value("Mentor","WaitToCloseDialogInterval",WaitToCloseDialogInterval)
 		config.set_value("Mentor","QuietTimeInterval",QuietTimeInterval)
 		config.set_value("Mentor","PreferredMentor",PreferredMentor)
 		config.set_value("Quick Menu", "Position", screen/2)
+		config.set_value("System", "MainWindow",MainWindow)
 		
 		config.save(SETTINGS_FILE_PATH)
 	else:
@@ -45,10 +48,10 @@ func _ready():
 	if !DirAccess.dir_exists_absolute(MENTOR_PATH):
 		var rins_path = MENTOR_PATH+ "/Rin"
 		DirAccess.make_dir_recursive_absolute(rins_path)
-		DirAccess.copy_absolute("res://data/Rin/persona.json",rins_path+"/persona.json")
-		DirAccess.copy_absolute("res://data/Rin/Rin.png",rins_path+"/Rin.png")
-	load_mentor_settings()
+		DirAccess.copy_absolute(ProjectSettings.globalize_path("res://data/Rin/persona.json"),rins_path+"/persona.json") 
 	load_quick_menu_position()
+	load_system_settings()
+	load_mentor_settings()
 func save(location: String, data: Dictionary ):
 	var f  = FileAccess.open(location, FileAccess.WRITE)
 	f.store(data)
@@ -61,14 +64,24 @@ func save_settings():
 
 func save_quick_menu_position(position: Vector2i):
 	config.set_value("Quick Menu", "Position", position)
+	config.save(SETTINGS_FILE_PATH)
 func load_quick_menu_position():	
 	QuickMenuPosition = config.get_value("Quick Menu","Position", screen/2)
+
+func save_main_window():
+	config.set_value("System","MainWindow",MainWindow)
+	config.save(SETTINGS_FILE_PATH)
+	for w in DisplayServer.get_window_list():
+		DisplayServer.window_set_current_screen(MainWindow,w)
+func load_system_settings():
+	MainWindow =  config.get_value("System", "MainWindow", 0)
 func load_mentor_settings():
 	WaitToCloseDialogInterval = config.get_value("Mentor","WaitToCloseDialogInterval")
 	WaitToTalkInterval = config.get_value("Mentor","WaitToTalkInterval")
 	QuietTimeInterval = config.get_value("Mentor","QuietTimeInterval")
 	PreferredMentor = config.get_value("Mentor","PreferredMentor")
 func load_mentor_data(file_name)-> Companion:
+	print(file_name)
 	var file = FileAccess.open(file_name, FileAccess.READ)
 	var data = JSON.parse_string(file.get_as_text())
 	var persona : Companion = Companion.new()

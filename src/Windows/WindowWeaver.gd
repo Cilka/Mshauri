@@ -75,10 +75,11 @@ func OpenQuickMenu(window_pos: Vector2i =Center()):
 	var q_menu = _quick_menu.instantiate()
 	_weave(window_pos,q_menu, "Quick Menu")
 	_windows["Quick Menu"].resize_to_control()
-	_windows["Quick Menu"].borderless = false
+	_windows["Quick Menu"].borderless = true
 	_windows["Quick Menu"].transparent = true
 	_windows["Quick Menu"].transparent_bg = true
 	_windows["Quick Menu"].physics_object_picking = true
+	_windows["Quick Menu"].initial_position = Window.WINDOW_INITIAL_POSITION_ABSOLUTE
 
 	return _windows["Quick Menu"]
 func OpenJournal(window_pos: Vector2i = Center()):
