@@ -81,7 +81,7 @@ func load_mentor_settings():
 	QuietTimeInterval = config.get_value("Mentor","QuietTimeInterval")
 	PreferredMentor = config.get_value("Mentor","PreferredMentor")
 func load_mentor_data(file_name)-> Companion:
-	print(file_name)
+	
 	var file = FileAccess.open(file_name, FileAccess.READ)
 	var data = JSON.parse_string(file.get_as_text())
 	var persona : Companion = Companion.new()

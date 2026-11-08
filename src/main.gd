@@ -9,7 +9,6 @@ extends Node
 @onready var _main_camera: Camera2D = $Camera2D
 @onready var dialog_window = $DialogWindow
 @export var dialog_window_position :Vector2i = Vector2i(800,800)
-var mentor_window
 var mentor : Mentor
 var has_profile : bool = true
 var dialog_window_set : bool = false
@@ -24,7 +23,7 @@ func _ready():
 	ProjectSettings.set_setting("display/window/per_pixel_transparency/allowed", true)
 	var screen = DisplayServer.screen_get_usable_rect(System.MainWindow).size
 	Weaver.OpenQuickMenu(System.QuickMenuPosition)
-	mentor_window = Weaver.SummonMentor()
+	Weaver.SummonMentor()
 	#System tray is not supported in 4.4.1 for Linux Systems
 
 	# Set the window settings - most of them can be set in the project settings

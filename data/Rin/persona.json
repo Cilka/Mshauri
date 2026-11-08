@@ -125,7 +125,7 @@
 				"category": "Comfort"
 			},
 			{
-				"sentence": "Don't fret. I'll be here as long as you need me",
+				"sentence": "Don't fret. I'll be here as long as you need me!",
 				"category": "Comfort"
 			},
 			{
@@ -141,7 +141,7 @@
 				"category": "Random"
 			},
 			{
-				"sentence": "Try to take deep breaths before you need to take deep breaths",
+				"sentence": "Try to take deep breaths before you need to take deep breaths...",
 				"category": "Health"
 			},
 			{
@@ -181,7 +181,7 @@
 				"category": "Health"
 			},
 			{
-				"sentence": "If your hands are hurting you, why not lay them flat on your desk and press onto them?",
+				"sentence": "If your hands are hurting you, why not lay them flat on something flat and press onto them?",
 				"category": "Health"
 			},
 			{
@@ -193,7 +193,7 @@
 				"category": "Random"
 			},
 			{
-				"sentence": "The thoughts in your head are not you little cheri. I won't judge you for having them.",
+				"sentence": "The thoughts in your head are not you, cheri. I won't judge you for having them.",
 				"category": "Comfort"
 			},
 			{
@@ -217,7 +217,7 @@
 				"category":"Health"
 			},
 			{
-				"sentence":"Sometimes believing in a little magic is better than knowing the facts",
+				"sentence":"Sometimes believing in a little magic is better than knowing the facts.",
 				"category":"Motivational"
 			},
 			{
@@ -261,7 +261,7 @@
 				"category":"Motivational"
 			},
 			{
-				"sentence":"A younger person that has a lot of skill doesn't mean its too late for you.",
+				"sentence":"A younger person that has a lot more skill than you doesn't mean your journey is at an end...",
 				"category":"Inspiration"
 			},
 			{
@@ -293,12 +293,12 @@
 				"category":"Random"
 			},
 			{
-				"sentence":"Your emotions are not something to be controlled but understood. When they are too intense, them wash over you before dissecting why.",
+				"sentence":"Your emotions are not something to be controlled but understood. When they are too intense, them wash over you before trying to figure out why they are happening.",
 				"category":"Health"
 			},
 			
 			{
-				"sentence":"Remember there are no bad emotions. It's what you do with them that make ti good or bad.",
+				"sentence":"Remember there are no bad emotions. It's what you do with them that make it good or bad.",
 				"category":"Motivational"
 			},
 			
@@ -307,7 +307,7 @@
 				"category":"Motivational"
 			},
 			{
-				"sentence":"Skill is not finite, but that doesn't mean you should pursue it endlessly.",
+				"sentence":"Skill may be infinite, but that doesn't mean you should pursue it endlessly.",
 				"category":"Motivational"
 			},
 			
@@ -427,17 +427,17 @@
 			},
 			
 			{
-				"sentence":"I don't think babies can be ugly. Just undesirable to people with shallow hearts.",
+				"sentence":"I don't think babies can be ugly. Just undesirable to humans with shallow hearts.",
 				"category":"Comfort"
 			},
 			
 			{
-				"sentence":"I'm not sure how people can say \"don't take it personal\" while hurting them. Is that suppose to be what little one's say \"a prank\"?",
+				"sentence":"I'm not sure how humans can say \"don't take it personal\" while hurting them. Is that suppose to be what little one's say \"a prank\"?",
 				"category":"Random"
 			},
 			
 			{
-				"sentence":"If you take on so many quests that you can't get out of bed, maybe its time to start carrying less.",
+				"sentence":"If you take on so many quests that you can't get out of bed, maybe its time to reconsider them.",
 				"category":"Health"
 			},
 			
@@ -472,7 +472,7 @@
 			},
 			
 			{
-				"sentence":"How old am I?\n<p=3.0>...<p=3.0>\nNot sure... I stopped counting centuries ago!",
+				"sentence":"How old am I?\n<p=3.0>...<p=3.0>\nHonestly I stopped counting after the fourth crusade. So take a guess!",
 				"category":"Random"
 			},
 			

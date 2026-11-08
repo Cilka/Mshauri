@@ -16,6 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Mshauri"
 config/description="Because every hero needs someone in their corner!"
+config/version="0.1.0"
 run/main_scene="uid://c6bk7ahfnp41m"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 run/max_fps=60
@@ -73,6 +74,8 @@ Mouse_Down={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
+rendering_device/driver.windows="d3d12"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.3019608, 0.3019608, 0.3019608, 0)
+viewport/transparent_background=true

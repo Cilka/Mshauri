@@ -20,7 +20,7 @@ var chat_window : Window
 var is_user_in_menu: bool = false
 var quiet_timer_timed_out : bool = false
 var random_chat_buffer = {}
-var random_chat_buffer_limit : int = 6
+var random_chat_buffer_limit : int = 30
 signal QuiteTimerChanged(time)
 func _ready():
 	#print_debug(Conch.read_app_usage())
@@ -60,11 +60,8 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if !is_held && is_hovered && event.button_index == MOUSE_BUTTON_LEFT:
 			is_held = true
-			print_debug("Mouse pos: " + str(event.position))
 		elif is_held &&  event.button_index == MOUSE_BUTTON_LEFT:
 			is_held = false
-			#get_window().size = get_window().min_size
-			print_debug("let goooooo!!!!")
 	if is_held && event is InputEventMouseMotion:
 		#get_window().size =  get_window().max_size
 		position =  DisplayServer.mouse_get_position()- get_window().size/2
@@ -108,7 +105,7 @@ func say_random():
 		var key = companion_data.sayings.idle.keys().pick_random()
 		random_chat_buffer[key] =  companion_data.sayings.idle[key]
 		if random_chat_buffer.size() > random_chat_buffer_limit:
-			var pop = random_chat_buffer.keys()[0]
+			var pop = random_chat_buffer.keys().pick_random()
 			companion_data.sayings.idle[pop] = random_chat_buffer[pop]
 			random_chat_buffer.erase(pop)
 		stop_moving()
@@ -140,11 +137,9 @@ func _anim_state():
 func _on_mouse_detector_mouse_entered() -> void:
 	stop_moving()
 	is_hovered = true
-	print_debug("Found Mouse!")
 func _on_mouse_detector_mouse_exited() -> void:
 	is_hovered = false
 	movement_timer.start()
-	print_debug("Mouse gone...")
 func _should_move() -> bool:
 	return !is_hovered && !is_held && !is_talking
 func _on_chat_close() -> void:
@@ -184,7 +179,6 @@ func _on_quite_time_changed(val):
 	
 func _on_talk_time_changed(val):
 	talk_timer.wait_time = val
-
 
 func _on_quiet_timer_timeout() -> void:
 	if is_user_in_menu:

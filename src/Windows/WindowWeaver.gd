@@ -60,10 +60,7 @@ func SummonMentor(window_pos : Vector2i = TopLeft()):
 	_weave(window_pos, m, "Your Mentor", false)	
 	_windows["Your Mentor"].visible =true
 	_windows["Your Mentor"].unresizable = false
-	_windows["Your Mentor"].transient = false
-	_windows["Your Mentor"].borderless = true
-	_windows["Your Mentor"].transparent_bg = true
-	_windows["Your Mentor"].transparent = true
+	
 	_windows["Your Mentor"].always_on_top = true
 	_windows["Your Mentor"].physics_object_picking = true
 	_windows["Your Mentor"].initial_position = Window.WINDOW_INITIAL_POSITION_ABSOLUTE
@@ -75,12 +72,8 @@ func OpenQuickMenu(window_pos: Vector2i =Center()):
 	var q_menu = _quick_menu.instantiate()
 	_weave(window_pos,q_menu, "Quick Menu")
 	_windows["Quick Menu"].resize_to_control()
-	_windows["Quick Menu"].borderless = true
-	_windows["Quick Menu"].transparent = true
-	_windows["Quick Menu"].transparent_bg = true
 	_windows["Quick Menu"].physics_object_picking = true
 	_windows["Quick Menu"].initial_position = Window.WINDOW_INITIAL_POSITION_ABSOLUTE
-
 	return _windows["Quick Menu"]
 func OpenJournal(window_pos: Vector2i = Center()):
 	var journal = (load("res://src/Windows/Journal.tscn") as PackedScene).instantiate()
@@ -100,8 +93,14 @@ func adjust_view(window: String, resize_to :Vector2):
 	@warning_ignore("narrowing_conversion")
 	_windows[window].size = Vector2i(resize_to.x, resize_to.y)
 	_windows[window].position = old_pos
-func _weave(window_pos : Vector2i,child: Node,window_title :String = "" ,is_ui : bool = true, popup: bool=false ) -> Node:
+func _weave(window_pos : Vector2i,child: Node,window_title :String = "" ,\
+is_ui : bool = true, popup: bool=false ) -> Node:
 	var new_window = _window.instantiate()		
+	new_window.transient = false
+	new_window.borderless = true
+	new_window.transparent_bg = true
+	new_window.transparent = true
+	new_window.transient = false
 	new_window.initial_position = Window.WINDOW_INITIAL_POSITION_ABSOLUTE
 	get_tree().root.get_node("/root/Main").add_child(new_window)
 	new_window.ui_view_only = is_ui

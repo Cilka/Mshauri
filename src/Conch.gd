@@ -32,7 +32,6 @@ func execute_then_read(cmd: String,options: PackedStringArray = PackedStringArra
 	thread.start(callable)
 	if !raw_dog:
 		cmd = "\""+cmd+"\""		
-	print_debug("cmd: " + cmd)
 	callable.call(cmd, options, output,false, show_terminal)
 	thread.wait_to_finish()
 	return output

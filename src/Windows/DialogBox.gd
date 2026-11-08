@@ -26,7 +26,6 @@ func _process(delta:float) -> void:
 func _input(event: InputEvent) -> void:
 	if (event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT)\
 	|| (Input.is_action_just_pressed("accept")):
-		print_debug("Text box gfound mouse")
 		if is_talking():
 			message_box.visible_characters = message_box.text.length()
 			type_timer.stop()
