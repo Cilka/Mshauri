@@ -58,7 +58,7 @@ func OpenSettings(window_pos :Vector2i = Center()) -> Window:
 func SummonMentor(window_pos : Vector2i = TopLeft()):
 	var m = _mentor.instantiate()
 	_weave(window_pos, m, "Your Mentor", false)	
-	_windows["Your Mentor"].visible =true
+	
 	_windows["Your Mentor"].unresizable = false
 	
 	_windows["Your Mentor"].always_on_top = true
@@ -67,6 +67,8 @@ func SummonMentor(window_pos : Vector2i = TopLeft()):
 	_windows["Your Mentor"].content_scale_mode =Window.CONTENT_SCALE_MODE_CANVAS_ITEMS
 	_windows["Your Mentor"].content_scale_aspect =Window.CONTENT_SCALE_ASPECT_KEEP
 	_windows["Your Mentor"].add_to_group("Mentor")
+	_windows["Your Mentor"].visible =false
+	_windows["Your Mentor"].visible =true
 	return _windows["Your Mentor"]
 func OpenQuickMenu(window_pos: Vector2i =Center()):
 	var q_menu = _quick_menu.instantiate()
